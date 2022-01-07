@@ -1,7 +1,7 @@
 from posixpath import basename
 import requests, os, bs4
 
-for x in range(0,162):
+for x in range(0,179):
     url = 'https://levelingsolo.com/manga/solo-leveling-chapter-' + str(x) +'/'
     folderName = 'Solo-Leveling-chapter-'+ str(x)
     os.makedirs(folderName, exist_ok=True)
