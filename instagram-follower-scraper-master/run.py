@@ -10,8 +10,8 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager as CM
 
 # Complete these 2 fields ==================
-USERNAME = 'shootshub'
-PASSWORD = '186A32b0'
+USERNAME = 'add_name_here'
+PASSWORD = 'add_password_here'
 # ==========================================
 
 TIMEOUT = 15
