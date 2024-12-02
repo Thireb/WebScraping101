@@ -1,8 +1,13 @@
 from posixpath import basename
 import requests, os, bs4
 
+<<<<<<< HEAD
 for x in range(0,179):
     url = 'https://levelingsolo.com/manga/solo-leveling-chapter-' + str(x) +'/'
+=======
+for x in range(0,1):
+    url = 'https://hanime.tv/browse/images'
+>>>>>>> fed0255 (adding every scrapping project)
     folderName = 'Solo-Leveling-chapter-'+ str(x)
     os.makedirs(folderName, exist_ok=True)
 #download the page
