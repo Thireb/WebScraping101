@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <title>Sign In - Online Lecture Management System</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Sign in to your account" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Ignite LMS" />
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/tab-logo-lms.png" />
+<link rel="shortcut icon" type="image/png" href="/tab-logo-lms.png" />
+<link rel="apple-touch-icon" href="/tab-logo-lms.png">
+<script src="/js/pwa-install.js" defer></script>
+
+    <meta name="theme-color" content="#3E97FF">
+    <link rel="canonical" href="https://keenthemes.com/metronic" />
+    <link rel="icon" type="image/png" href="/tab-logo-lms.png" />
+    <link rel="shortcut icon" type="image/png" href="/tab-logo-lms.png" />
+    <!--begin::Fonts(mandatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+    <link href="/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+    <script>
+            // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+            if (window.top != window.self) {
+                window.top.location.replace(window.self.location.href);
+            }
+    </script>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="app-blank">
+    <!--begin::Theme mode setup on page load-->
+    <script>
+            var defaultThemeMode = "light";
+            var themeMode;
+            if (document.documentElement) {
+                if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+                    themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+                } else {
+                    if (localStorage.getItem("data-bs-theme") !== null) {
+                        themeMode = localStorage.getItem("data-bs-theme");
+                    } else {
+                        themeMode = defaultThemeMode;
+                    }
+                }
+                if (themeMode === "system") {
+                    themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+                }
+                document.documentElement.setAttribute("data-bs-theme", themeMode);
+            }
+    </script>
+    <!--end::Theme mode setup on page load-->
+    
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+        --ig-primary: #005E78;
+        --ig-primary-2: #0B7F8F;
+        --ig-accent: #14B8A6;
+        --ig-accent-2: #2DD4BF;
+        --ig-ink: #0A2E36;
+        --ig-ink-2: #062024;
+        --ig-text: #0A2E36;
+        --ig-muted: #607d86;
+        --ig-border: #E1EAEC;
+        --ig-input: #F1F6F7;
+        --ig-card: #FFFFFF;
+        --ig-bg: #EEF4F5;
+        --ig-glow: rgba(0, 94, 120, 0.28);
+        --ig-radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100%;
+        height: auto;
+        overflow-x: hidden;
+    }
+
+    body.app-blank {
+        background: var(--ig-bg) !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #kt_app_root { min-height: 100vh; min-height: 100dvh; height: auto; }
+
+    /* ─────────────────────────── Toasts ─────────────────────────── */
+    .ignite-toast-container {
+        position: fixed;
+        top: max(20px, env(safe-area-inset-top));
+        right: 20px;
+        left: auto;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        pointer-events: none;
+    }
+
+    .ignite-toast {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+        border-radius: 16px;
+        padding: 15px 18px;
+        display: flex;
+        align-items: flex-start;
+        gap: 13px;
+        min-width: 280px;
+        max-width: min(380px, calc(100vw - 40px));
+        pointer-events: auto;
+        transform: translateX(120%);
+        opacity: 0;
+        transition: transform 0.45s cubic-bezier(0.2, 0.9, 0.2, 1), opacity 0.4s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .ignite-toast.show { transform: translateX(0); opacity: 1; }
+
+    .ignite-toast-icon {
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ignite-toast.error .ignite-toast-icon { background: #FEE2E2; color: #DC2626; }
+    .ignite-toast.warning .ignite-toast-icon { background: #FEF3C7; color: #D97706; }
+    .ignite-toast.info .ignite-toast-icon { background: #DFF3F1; color: #0F8A7B; }
+
+    .ignite-toast-content { flex: 1; padding-top: 1px; }
+    .ignite-toast-title { font-size: 0.9rem; font-weight: 700; color: var(--ig-text); margin-bottom: 3px; }
+    .ignite-toast-message { font-size: 0.8rem; font-weight: 500; color: var(--ig-muted); line-height: 1.45; }
+
+    .ignite-toast-close {
+        background: none; border: none; color: #9CA3AF; cursor: pointer;
+        padding: 4px; margin: -4px -4px 0 0; border-radius: 6px;
+        transition: background 0.2s, color 0.2s;
+    }
+    .ignite-toast-close:hover { background: rgba(0, 0, 0, 0.05); color: var(--ig-text); }
+
+    .ignite-toast-progress { position: absolute; bottom: 0; left: 0; height: 3px; background: var(--ig-primary); width: 100%; transform-origin: left; }
+    .ignite-toast.error .ignite-toast-progress { background: #DC2626; }
+    .ignite-toast.warning .ignite-toast-progress { background: #D97706; }
+    .ignite-toast.info .ignite-toast-progress { background: #0F8A7B; }
+
+    /* ─────────────────────────── Layout ─────────────────────────── */
+    .auth-split {
+        display: flex;
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: auto;
+    }
+
+    .auth-left {
+        flex: 0 0 54%;
+        max-width: 54%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 48px 40px;
+        padding-top: max(48px, env(safe-area-inset-top));
+        padding-bottom: max(48px, env(safe-area-inset-bottom));
+        background: var(--ig-card);
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+    }
+
+    .auth-left::before {
+        content: '';
+        position: absolute;
+        top: -120px; right: -120px;
+        width: 320px; height: 320px;
+        background: radial-gradient(circle, rgba(0,94,120,0.10) 0%, transparent 70%);
+        pointer-events: none;
+    }
+    .auth-left::after {
+        content: '';
+        position: absolute;
+        bottom: -140px; left: -140px;
+        width: 340px; height: 340px;
+        background: radial-gradient(circle, rgba(20,184,166,0.10) 0%, transparent 70%);
+        pointer-events: none;
+    }
+
+    .auth-form-wrap {
+        width: 100%;
+        max-width: 400px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Mobile hero banner (hidden on desktop) */
+    .mobile-hero { display: none; }
+
+    .back-home-btn {
+        position: absolute;
+        top: max(24px, env(safe-area-inset-top));
+        left: 28px;
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--ig-muted);
+        text-decoration: none;
+        padding: 6px 11px 6px 8px;
+        border-radius: 8px;
+        background: rgba(241, 246, 247, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid var(--ig-border);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+        transition: all 0.2s cubic-bezier(0.2, 0.9, 0.2, 1);
+    }
+    .back-home-btn:hover {
+        color: var(--ig-primary);
+        background: #fff;
+        border-color: var(--ig-primary);
+        transform: translateX(-2px);
+        box-shadow: 0 3px 10px rgba(0, 94, 120, 0.1);
+        text-decoration: none;
+    }
+    .back-home-btn svg {
+        transition: transform 0.2s ease;
+    }
+    .back-home-btn:hover svg {
+        transform: translateX(-2px);
+    }
+
+    .mobile-back-btn {
+        position: absolute;
+        top: max(16px, env(safe-area-inset-top));
+        left: 18px;
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.14);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 5px 12px 5px 8px;
+        border-radius: 999px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+    .mobile-back-btn:hover, .mobile-back-btn:active {
+        background: rgba(255, 255, 255, 0.25);
+        color: #fff;
+        transform: translateX(-2px);
+        text-decoration: none;
+    }
+
+    .auth-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 28px;
+        text-decoration: none;
+        color: inherit;
+        transition: opacity 0.2s;
+    }
+    .auth-brand:hover {
+        opacity: 0.92;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .auth-brand-logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: transparent;
+    }
+    .auth-brand-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    .auth-brand-name {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--ig-text);
+        letter-spacing: -0.4px;
+        line-height: 1.15;
+    }
+    .auth-brand-name span { color: var(--ig-primary); }
+
+    .auth-heading { margin-bottom: 26px; }
+    .auth-heading h1 { font-size: 1.85rem; font-weight: 800; color: var(--ig-text); letter-spacing: -0.6px; margin: 0 0 6px; line-height: 1.2; }
+    .auth-heading p { color: var(--ig-muted); font-size: 0.9rem; font-weight: 400; margin: 0; }
+
+    .social-row { display: grid; grid-template-columns: 1fr; gap: 12px; margin-bottom: 22px; }
+
+    .btn-social {
+        display: flex; align-items: center; justify-content: center; gap: 9px;
+        padding: 13px 16px;
+        border: 1.5px solid var(--ig-border);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--ig-text);
+        font-size: 0.86rem; font-weight: 600;
+        font-family: inherit;
+        cursor: pointer; text-decoration: none;
+        transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+        min-height: 50px;
+    }
+    .btn-social:hover { border-color: var(--ig-primary); box-shadow: 0 0 0 3px rgba(0,94,120,0.1); transform: translateY(-1px); color: var(--ig-text); text-decoration: none; }
+    .btn-social:active { transform: translateY(0); }
+    .btn-social img { width: 18px; height: 18px; }
+
+    .auth-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: var(--ig-border); }
+    .auth-divider span { font-size: 0.74rem; color: var(--ig-muted); font-weight: 500; white-space: nowrap; }
+
+    .field-group { margin-bottom: 15px; }
+    .field-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ig-text); margin-bottom: 7px; }
+
+    .field-input-wrap { position: relative; }
+    .field-icon {
+        position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+        color: var(--ig-muted); display: flex; align-items: center; pointer-events: none;
+        transition: color 0.2s;
+    }
+    .field-input-wrap:focus-within .field-icon { color: var(--ig-primary); }
+
+    .auth-input {
+        width: 100%;
+        padding: 14px 14px 14px 44px;
+        background: var(--ig-input) !important;
+        border: 1.5px solid transparent !important;
+        border-radius: 12px !important;
+        font-size: 16px; /* 16px prevents iOS zoom on focus */
+        font-weight: 400;
+        color: var(--ig-text) !important;
+        font-family: inherit;
+        transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        outline: none;
+        min-height: 52px;
+    }
+    .auth-input::placeholder { color: #9CA3AF; }
+    .auth-input:focus { border-color: var(--ig-primary) !important; background: #fff !important; box-shadow: 0 0 0 3px rgba(0,94,120,0.12) !important; }
+
+    .toggle-pw {
+        position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+        background: none; border: none; color: var(--ig-muted); cursor: pointer;
+        padding: 8px; display: flex; align-items: center; border-radius: 8px;
+        transition: color 0.2s, background 0.2s;
+    }
+    .toggle-pw:hover { color: var(--ig-primary); background: rgba(0,94,120,0.06); }
+
+    .auth-meta { display: flex; justify-content: space-between; align-items: center; margin: 6px 0 22px; gap: 12px; flex-wrap: wrap; }
+    .auth-meta a { font-size: 0.8rem; font-weight: 600; color: var(--ig-primary); text-decoration: none; transition: opacity 0.2s; }
+    .auth-meta a:hover { opacity: 0.75; }
+
+    .remember-me { display: flex; align-items: center; gap: 8px; }
+    .remember-me input[type="checkbox"] { width: 17px; height: 17px; margin: 0; accent-color: var(--ig-primary); cursor: pointer; }
+    .remember-me label { font-size: 0.8rem; font-weight: 500; color: var(--ig-muted); cursor: pointer; user-select: none; }
+
+    .btn-ignite {
+        width: 100%;
+        padding: 15px 20px;
+        background: linear-gradient(135deg, var(--ig-primary) 0%, var(--ig-primary-2) 100%);
+        color: #fff; border: none; border-radius: 12px;
+        font-size: 0.95rem; font-weight: 700; font-family: inherit;
+        cursor: pointer; letter-spacing: 0.2px;
+        box-shadow: 0 6px 20px var(--ig-glow);
+        transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+        position: relative; overflow: hidden;
+        margin-bottom: 22px;
+        min-height: 54px;
+    }
+    .btn-ignite::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,255,255,0.18), transparent); opacity: 0; transition: opacity 0.2s; }
+    .btn-ignite:hover { transform: translateY(-2px); box-shadow: 0 10px 28px var(--ig-glow); }
+    .btn-ignite:hover::before { opacity: 1; }
+    .btn-ignite:active { transform: translateY(0); }
+    .btn-ignite:disabled { opacity: 0.85; cursor: not-allowed; transform: none; }
+    .btn-ignite[data-kt-indicator="on"] .indicator-label { display: none; }
+    .btn-ignite:not([data-kt-indicator="on"]) .indicator-progress { display: none; }
+    .btn-ignite .indicator-progress { display: flex; align-items: center; justify-content: center; gap: 8px; }
+
+    .auth-signup-row { text-align: center; font-size: 0.83rem; color: var(--ig-muted); font-weight: 500; }
+    .auth-signup-row a { color: var(--ig-primary); font-weight: 700; text-decoration: none; margin-left: 4px; }
+    .auth-signup-row a:hover { text-decoration: underline; }
+
+    .auth-footer-links { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 8px 20px; margin-top: 34px; }
+    .auth-footer-links a, .auth-footer-install { font-size: 0.78rem; font-weight: 600; color: var(--ig-muted); text-decoration: none; transition: color 0.2s; }
+    .auth-footer-links a:hover { color: var(--ig-primary); }
+
+    .auth-footer-install {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 0; border: none; background: transparent; cursor: pointer; font-family: inherit;
+    }
+    .auth-footer-install svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .auth-footer-install:hover { color: var(--ig-primary); }
+    .auth-footer-install.is-installed { opacity: 0.65; cursor: default; }
+
+    /* ─────────────────────────── Cloudflare Turnstile ─────────────────────────── */
+    .turnstile-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        min-height: 65px;
+    }
+    .turnstile-container .cf-turnstile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* ─────────────────────────── Lockout Live Countdown Banner ─────────────────────────── */
+    .lockout-banner {
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(220, 38, 38, 0.13) 100%);
+        border: 1.5px solid rgba(239, 68, 68, 0.38);
+        border-radius: 14px;
+        padding: 13px 16px;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        animation: pulseAlert 2.4s infinite ease-in-out;
+    }
+    @keyframes pulseAlert {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.25); }
+        50% { box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1); }
+    }
+    .lockout-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: #ef4444;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .lockout-info { flex: 1; min-width: 0; }
+    .lockout-title { font-size: 0.84rem; font-weight: 700; color: #991b1b; margin-bottom: 2px; }
+    .lockout-sub { font-size: 0.76rem; color: #b91c1c; font-weight: 500; }
+    .lockout-timer-pill {
+        background: #991b1b;
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-weight: 700;
+        font-size: 0.95rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 6px rgba(153, 27, 27, 0.3);
+        flex-shrink: 0;
+    }
+
+    /* PWA toast */
+    .pwa-install-toast-host { position: fixed; right: 20px; bottom: max(20px, env(safe-area-inset-bottom)); z-index: 9998; display: flex; flex-direction: column; gap: 12px; pointer-events: none; }
+    .pwa-install-toast { width: min(340px, calc(100vw - 40px)); background: rgba(10, 46, 54, 0.96); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 14px; box-shadow: 0 16px 44px rgba(10, 46, 54, 0.22); color: #fff; display: flex; flex-direction: column; gap: 4px; opacity: 0; padding: 15px 44px 15px 16px; pointer-events: auto; position: relative; transform: translateY(8px); transition: opacity 0.2s, transform 0.2s; }
+    .pwa-install-toast.show { opacity: 1; transform: none; }
+    .pwa-install-toast strong { font-size: 0.86rem; font-weight: 800; }
+    .pwa-install-toast span { color: rgba(255,255,255,0.72); font-size: 0.78rem; line-height: 1.45; }
+    .pwa-install-toast-close { position: absolute; right: 10px; top: 9px; width: 26px; height: 26px; border: none; border-radius: 7px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.72); cursor: pointer; font-size: 1.05rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+    .pwa-install-toast-close:hover { background: rgba(255,255,255,0.14); color: #fff; }
+
+    /* ─────────────────────────── Right showcase ─────────────────────────── */
+    .auth-right {
+        flex: 0 0 46%;
+        max-width: 46%;
+        background: linear-gradient(150deg, var(--ig-ink) 0%, var(--ig-ink-2) 100%);
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        padding: 56px 48px; position: relative; overflow: hidden;
+    }
+    .auth-right::before { content: ''; position: absolute; top: -120px; right: -120px; width: 420px; height: 420px; background: radial-gradient(circle, rgba(20,184,166,0.22) 0%, transparent 65%); pointer-events: none; }
+    .auth-right::after { content: ''; position: absolute; bottom: -100px; left: -100px; width: 340px; height: 340px; background: radial-gradient(circle, rgba(0,94,120,0.28) 0%, transparent 65%); pointer-events: none; }
+
+    /* Decorative animated orbs */
+    .orb { position: absolute; border-radius: 50%; filter: blur(2px); opacity: 0.5; pointer-events: none; }
+    .orb-1 { width: 14px; height: 14px; background: var(--ig-accent-2); top: 18%; left: 20%; animation: floaty 6s ease-in-out infinite; }
+    .orb-2 { width: 10px; height: 10px; background: #5EEAD4; top: 70%; left: 78%; animation: floaty 7s ease-in-out infinite 0.6s; }
+    .orb-3 { width: 8px; height: 8px; background: #fff; top: 30%; left: 82%; opacity: 0.35; animation: floaty 8s ease-in-out infinite 1.2s; }
+    @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+
+    .auth-right-inner { position: relative; z-index: 1; max-width: 420px; text-align: center; width: 100%; }
+
+    .stats-strip { display: flex; gap: 16px; justify-content: center; margin-bottom: 40px; }
+    .stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 16px 18px; min-width: 96px; backdrop-filter: blur(10px); transition: transform 0.2s, border-color 0.2s; }
+    .stat-card:hover { transform: translateY(-3px); border-color: rgba(20,184,166,0.4); }
+    .stat-value { font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1; margin-bottom: 4px; }
+    .stat-value span { color: var(--ig-accent); }
+    .stat-label { font-size: 0.68rem; font-weight: 500; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; }
+
+    .auth-mockup { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 18px; margin-bottom: 34px; backdrop-filter: blur(10px); box-shadow: 0 20px 50px rgba(0,0,0,0.25); }
+    .mockup-bar { display: flex; gap: 6px; margin-bottom: 14px; }
+    .mockup-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .mockup-dot:nth-child(1) { background: #FF5F57; }
+    .mockup-dot:nth-child(2) { background: #FEBC2E; }
+    .mockup-dot:nth-child(3) { background: #28C840; }
+
+    .mockup-course-row { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.07); transition: background 0.2s; }
+    .mockup-course-row:last-child { margin-bottom: 0; }
+    .mockup-course-row:hover { background: rgba(20,184,166,0.1); }
+    .course-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+    .course-info { flex: 1; text-align: left; }
+    .course-name { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.9); }
+    .course-prog-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; margin-top: 5px; overflow: hidden; }
+    .course-prog-fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ig-primary), var(--ig-accent)); }
+    .course-pct { font-size: 0.7rem; font-weight: 700; color: var(--ig-accent); }
+
+    .auth-right-title { font-size: 1.6rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.28; margin-bottom: 12px; }
+    .auth-right-title span { color: var(--ig-accent); }
+    .auth-right-sub { font-size: 0.875rem; color: rgba(255,255,255,0.55); font-weight: 400; line-height: 1.6; margin: 0; }
+
+    .avatars-row { display: flex; align-items: center; justify-content: center; gap: 0; margin-top: 28px; }
+    .avatar-bubble { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--ig-ink); margin-right: -10px; background: linear-gradient(135deg, #005E78, #14B8A6); display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 700; color: #fff; overflow: hidden; }
+    .avatar-bubble:nth-child(2) { background: linear-gradient(135deg, #0E7C86, #2DD4BF); }
+    .avatar-bubble:nth-child(3) { background: linear-gradient(135deg, #0F8A7B, #34D399); }
+    .avatar-bubble:nth-child(4) { background: linear-gradient(135deg, #147A94, #5EEAD4); }
+    .avatar-count { margin-left: 18px; font-size: 0.78rem; color: rgba(255,255,255,0.55); font-weight: 500; }
+    .avatar-count strong { color: #fff; font-weight: 700; }
+
+    /* Entrance animation */
+    .fx-in { opacity: 0; transform: translateY(16px); }
+
+    /* ─────────────────────────── Responsive / Mobile ─────────────────────────── */
+    @media (max-width: 992px) {
+        .auth-split { flex-direction: column; }
+
+        .auth-right { display: none; }
+
+        .auth-left {
+            flex: 1 1 auto;
+            max-width: 100%;
+            width: 100%;
+            justify-content: flex-start;
+            padding: 0 0 max(28px, env(safe-area-inset-bottom));
+            background: var(--ig-bg);
+        }
+        .auth-left::before, .auth-left::after { display: none; }
+
+        /* Native-app style gradient hero header on mobile */
+        .mobile-hero {
+            display: block;
+            width: 100%;
+            background: linear-gradient(150deg, var(--ig-ink) 0%, var(--ig-ink-2) 100%);
+            padding: calc(env(safe-area-inset-top) + 40px) 26px 74px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        .mobile-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 240px; height: 240px; background: radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 65%); }
+        .mobile-hero::after { content: ''; position: absolute; bottom: -80px; left: -70px; width: 220px; height: 220px; background: radial-gradient(circle, rgba(0,94,120,0.32) 0%, transparent 65%); }
+        .mobile-hero-brand { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 14px; margin-bottom: 20px; text-decoration: none; color: inherit; }
+        .mobile-hero-brand:hover { text-decoration: none; color: inherit; }
+        .mobile-hero-logo { width: 54px; height: 54px; border-radius: 14px; background: transparent; display: flex; align-items: center; justify-content: center; }
+        .mobile-hero-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .mobile-hero-name { font-size: 1.45rem; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
+        .mobile-hero-name span { color: var(--ig-accent-2); }
+        .mobile-hero h1 { position: relative; z-index: 1; font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin: 0 0 6px; }
+        .mobile-hero p { position: relative; z-index: 1; font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0; }
+
+        /* Form floats up as a rounded card overlapping the hero */
+        .auth-form-wrap {
+            max-width: 460px;
+            margin: -52px auto 0;
+            background: var(--ig-card);
+            border-radius: 22px 22px 0 0;
+            padding: 30px 24px 24px;
+            box-shadow: 0 -8px 30px rgba(10, 46, 54, 0.08);
+            min-height: 40vh;
+        }
+
+        /* Hide the desktop brand + heading + back button (mobile hero replaces them) */
+        .auth-left .auth-brand,
+        .auth-left .auth-heading,
+        .auth-left .back-home-btn { display: none; }
+
+        .auth-footer-links { margin-top: 28px; }
+    }
+
+    @media (min-width: 421px) and (max-width: 992px) {
+        .auth-form-wrap { border-radius: 22px; margin-top: -40px; box-shadow: 0 18px 44px rgba(10, 46, 54, 0.12); }
+    }
+
+    @media (max-width: 400px) {
+        .mobile-hero { padding-left: 20px; padding-right: 20px; }
+        .auth-form-wrap { padding-left: 18px; padding-right: 18px; }
+        .mobile-hero h1 { font-size: 1.35rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .fx-in { opacity: 1 !important; transform: none !important; }
+        .orb { animation: none !important; }
+    }
+</style>
+
+<div class="d-flex flex-column flex-root" id="kt_app_root">
+    <div class="auth-split">
+
+        <!--begin::Left (form)-->
+        <div class="auth-left">
+
+            <!-- Top-left Corner Back Button (Desktop) -->
+            <a href="/" class="back-home-btn fx-in" title="Back to Landing Page">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7" />
+                </svg>
+                <span>Back to Home</span>
+            </a>
+
+            <!-- Mobile-only gradient hero -->
+            <div class="mobile-hero">
+                <a href="/" class="mobile-back-btn" title="Back to Landing Page">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    <span>Back to Home</span>
+                </a>
+                <a href="/" class="mobile-hero-brand">
+                    <div class="mobile-hero-logo">
+                        <img src="/pwa-icon-192.png" alt="Logo" />
+                    </div>
+                    <span class="mobile-hero-name">IGNITE<span> LMS</span></span>
+                </a>
+                <h1>Welcome back</h1>
+                <p>Sign in to continue learning</p>
+            </div>
+
+            <div class="auth-form-wrap">
+
+                <a href="/" class="auth-brand fx-in">
+                    <div class="auth-brand-logo">
+                        <img src="/pwa-icon-192.png" alt="Logo" />
+                    </div>
+                    <span class="auth-brand-name">IGNITE<span> LMS</span></span>
+                </a>
+
+                <div class="auth-heading fx-in">
+                    <h1>Welcome back</h1>
+                    <p>Sign in to continue your learning journey</p>
+                </div>
+
+                <form id="kt_sign_in_form" method="post" novalidate="novalidate" action="/Account/Login">
+                    
+                    <input type="hidden" name="returnUrl" />
+                    <input type="hidden" name="form_render_ts" id="form_render_ts" value="639267018651109675" />
+                    <input type="text" name="user_website_hp" style="display:none !important;" tabindex="-1" autocomplete="off" />
+
+                    <div class="social-row fx-in">
+                            <button type="button" onclick="submitGoogleLogin(this)" data-google-url="/Account/ExternalLogin" class="btn-social">
+                                <img src="/assets/media/svg/brand-logos/google-icon.svg" alt="Google" />
+                                Continue with Google
+                            </button>
+                    </div>
+
+                    <div class="auth-divider fx-in">
+                        <span>or continue with email</span>
+                    </div>
+
+                    <div class="field-group fx-in">
+                        <label class="field-label" for="email">Email address</label>
+                        <div class="field-input-wrap">
+                            <span class="field-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                                </svg>
+                            </span>
+                            <input type="email" id="email" name="email" placeholder="you@example.com"
+                                   class="auth-input form-control" autocomplete="email" inputmode="email" />
+                        </div>
+                    </div>
+
+                    <div class="field-group fx-in">
+                        <label class="field-label" for="password">Password</label>
+                        <div class="field-input-wrap">
+                            <span class="field-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                                </svg>
+                            </span>
+                            <input type="password" id="password" name="password" placeholder="••••••••"
+                                   class="auth-input form-control" autocomplete="current-password" />
+                            <button type="button" class="toggle-pw" id="togglePw" tabindex="-1" aria-label="Show password">
+                                <svg id="eyeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="field-group fx-in">
+                     <div class="turnstile-container">
+                            <div class="cf-turnstile"
+                                 id="cf-turnstile-widget"
+                                 data-sitekey="0x4AAAAAAFCMucW-bW8OpwHO"
+                                 data-theme="light"></div>
+                        </div>
+                    </div>
+
+                    <div class="auth-meta fx-in">
+                        <div class="remember-me">
+                            <input type="checkbox" id="rememberMe" name="rememberMe" value="true" checked />
+                            <label for="rememberMe">Remember me</label>
+                        </div>
+                        <a href="javascript:void(0)" onclick="showUnavailableToast('Please contact your administrator to reset your password.')">Forgot password?</a>
+                    </div>
+
+
+                    <button type="submit" id="kt_sign_in_submit" class="btn-ignite fx-in">
+                        <span class="indicator-label">Sign In →</span>
+                        <span class="indicator-progress">
+                            Please wait...
+                            <span class="spinner-border spinner-border-sm"></span>
+                        </span>
+                    </button>
+
+                    <div class="auth-signup-row fx-in">
+                        New to IGNITE LMS?
+                        <a href="javascript:void(0)" onclick="showUnavailableToast('Please contact your administrator to create an account.')">Create an account</a>
+                    </div>
+                <input name="__RequestVerificationToken" type="hidden" value="CfDJ8EwkAo9IRTVHkUHjalNmfxQ1eXidLf7FzMU2-pRc2xIrVS61iW5itGTDCpnu9ZG3SUbny6c8e2UgnD0-acGVIdbJKf2i36CQnIQbUxznnVm6ctvPMso9pncjRcHcfft_zIJAiHekg5sCQNMCFq3U76I" /></form>
+
+                <div class="auth-footer-links fx-in">
+                    <a href="/">Home</a>
+                    <a href="https://www.ignitesol.net/" target="_blank">IgniteSol</a>
+                    <a href="/Home/Terms" target="_blank">Terms</a>
+                    <a href="/Home/Privacy" target="_blank">Privacy</a>
+                    <button type="button" class="auth-footer-install" data-pwa-install>
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M12 3v10m0 0 4-4m-4 4-4-4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M5 15v3.25A2.75 2.75 0 0 0 7.75 21h8.5A2.75 2.75 0 0 0 19 18.25V15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+                        </svg>
+                        Install app
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!--end::Left-->
+
+        <!--begin::Right (showcase)-->
+        <div class="auth-right">
+            <span class="orb orb-1"></span>
+            <span class="orb orb-2"></span>
+            <span class="orb orb-3"></span>
+
+            <div class="auth-right-inner">
+
+                <div class="stats-strip">
+                    <div class="stat-card">
+                        <div class="stat-value">500<span>+</span></div>
+                        <div class="stat-label">Live Lectures</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">10<span>K+</span></div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">99<span>%</span></div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+
+                <div class="auth-mockup">
+                    <div class="mockup-bar">
+                        <div class="mockup-dot"></div>
+                        <div class="mockup-dot"></div>
+                        <div class="mockup-dot"></div>
+                    </div>
+
+                    <div class="mockup-course-row">
+                        <div class="course-icon" style="background:rgba(0,94,120,0.15);">🔴</div>
+                        <div class="course-info">
+                            <div class="course-name">Live: Advanced Mathematics</div>
+                            <div class="course-prog-bar"><div class="course-prog-fill" style="width:85%"></div></div>
+                        </div>
+                        <div class="course-pct">85% Att.</div>
+                    </div>
+
+                    <div class="mockup-course-row">
+                        <div class="course-icon" style="background:rgba(20,184,166,0.15);">📅</div>
+                        <div class="course-info">
+                            <div class="course-name">Upcoming: Physics Fundamentals</div>
+                            <div class="course-prog-bar"><div class="course-prog-fill" style="width:10%"></div></div>
+                        </div>
+                        <div class="course-pct">Soon</div>
+                    </div>
+
+                    <div class="mockup-course-row">
+                        <div class="course-icon" style="background:rgba(15,138,123,0.15);">🎬</div>
+                        <div class="course-info">
+                            <div class="course-name">Recorded: Web Development</div>
+                            <div class="course-prog-bar"><div class="course-prog-fill" style="width:100%"></div></div>
+                        </div>
+                        <div class="course-pct">Ready</div>
+                    </div>
+                </div>
+
+                <h2 class="auth-right-title">
+                    Manage Lectures,<br />
+                    <span>Engage Students</span>
+                </h2>
+                <p class="auth-right-sub">
+                    Experience a seamless Online Lecture Management System. Schedule live meetings, track real-time attendance, and manage recorded sessions all in one place.
+                </p>
+
+                <div class="avatars-row">
+                    <div class="avatar-bubble">AK</div>
+                    <div class="avatar-bubble">SR</div>
+                    <div class="avatar-bubble">MQ</div>
+                    <div class="avatar-bubble">FH</div>
+                    <span class="avatar-count">Join <strong>10,000+</strong> active users daily</span>
+                </div>
+
+            </div>
+        </div>
+        <!--end::Right-->
+
+    </div>
+</div>
+
+
+
+    <!--begin::Javascript-->
+    <script>var hostUrl = "assets/";</script>
+    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+    <script src="/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="/assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script>
+        "use strict";
+
+        function resetTurnstile() {
+            if (window.turnstile && typeof window.turnstile.reset === 'function') {
+                try {
+                    window.turnstile.reset();
+                } catch (e) {
+                    console.warn('Turnstile reset error:', e);
+                }
+            }
+        }
+
+
+
+
+        const IgniteToasts = {
+            container: null,
+            init: function() {
+                if (!this.container) {
+                    this.container = document.createElement('div');
+                    this.container.className = 'ignite-toast-container';
+                    document.body.appendChild(this.container);
+                }
+            },
+            show: function(title, message, type = 'info', duration = 5000) {
+                this.init();
+                const toast = document.createElement('div');
+                toast.className = `ignite-toast ${type}`;
+
+                let iconSvg = '';
+                if (type === 'error') {
+                    iconSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>';
+                } else if (type === 'warning') {
+                    iconSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>';
+                } else {
+                    iconSvg = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>';
+                }
+
+                toast.innerHTML = `
+                    <div class="ignite-toast-icon">${iconSvg}</div>
+                    <div class="ignite-toast-content">
+                        <div class="ignite-toast-title">${title}</div>
+                        <div class="ignite-toast-message">${message}</div>
+                    </div>
+                    <button class="ignite-toast-close">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                    <div class="ignite-toast-progress"></div>
+                `;
+
+                this.container.appendChild(toast);
+
+                void toast.offsetWidth;
+                toast.classList.add('show');
+
+                const progress = toast.querySelector('.ignite-toast-progress');
+                progress.style.transition = `transform ${duration}ms linear`;
+
+                setTimeout(() => {
+                    progress.style.transform = 'scaleX(0)';
+                }, 10);
+
+                let removeTimeout = setTimeout(() => this.remove(toast), duration);
+
+                toast.querySelector('.ignite-toast-close').addEventListener('click', () => {
+                    clearTimeout(removeTimeout);
+                    this.remove(toast);
+                });
+            },
+            remove: function(toast) {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 400);
+            }
+        };
+
+        // Password visibility toggle
+        (function () {
+            var btn = document.getElementById('togglePw');
+            var inp = document.getElementById('password');
+            var icon = document.getElementById('eyeIcon');
+            if (!btn || !inp) return;
+
+            btn.addEventListener('click', function () {
+                var isText = inp.type === 'text';
+                inp.type = isText ? 'password' : 'text';
+                btn.setAttribute('aria-label', isText ? 'Show password' : 'Hide password');
+                icon.innerHTML = isText
+                    ? '<path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>'
+                    : '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>'
+                    + '<path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>'
+                    + '<line x1="1" y1="1" x2="23" y2="23"/>';
+            });
+        })();
+
+        var KTSigninGeneral = function () {
+            var form, btn;
+
+            function validateAndSubmit(e) {
+                if (e) e.preventDefault();
+
+                var email    = form.querySelector('[name="email"]').value.trim();
+                var password = form.querySelector('[name="password"]').value.trim();
+                var turnstileInput = form.querySelector('[name="cf-turnstile-response"]');
+                var turnstileToken = turnstileInput ? turnstileInput.value.trim() : '';
+
+                if (!email || !password) {
+                    IgniteToasts.show('Action Required', 'Please enter your email and password.', 'warning');
+                    return;
+                }
+
+                if (!turnstileToken) {
+                    IgniteToasts.show('Security Verification', 'Please complete the "I\'m not a robot" verification check.', 'warning');
+                    return;
+                }
+
+                btn.setAttribute('data-kt-indicator', 'on');
+                btn.disabled = true;
+                form.submit();
+            }
+
+            return {
+                init: function () {
+                    form = document.querySelector('#kt_sign_in_form');
+                    btn  = document.querySelector('#kt_sign_in_submit');
+                    if (!form || !btn) return;
+
+                    btn.addEventListener('click', validateAndSubmit);
+
+                    // Staggered entrance animation
+                    var authLeft = form.closest('.auth-left') || document.querySelector('.auth-left');
+                    var elements = authLeft ? authLeft.querySelectorAll('.fx-in') : form.querySelectorAll('.fx-in');
+                    elements.forEach(function (el, i) {
+                        el.style.transition = 'opacity 0.5s ease ' + (i * 0.055) + 's, transform 0.5s ease ' + (i * 0.055) + 's';
+                        setTimeout(function () {
+                            el.style.opacity = '1';
+                            el.style.transform = 'translateY(0)';
+                        }, 40);
+                    });
+                }
+            };
+        }();
+
+        // Restore submit button if page is restored from the back/forward cache.
+        window.addEventListener('pageshow', function (event) {
+            if (!event.persisted) return;
+            var btn = document.getElementById('kt_sign_in_submit');
+            if (btn) { btn.removeAttribute('data-kt-indicator'); btn.disabled = false; }
+        });
+
+        if (window.KTUtil && typeof KTUtil.onDOMContentLoaded === 'function') {
+            KTUtil.onDOMContentLoaded(function () { KTSigninGeneral.init(); });
+        } else {
+            document.addEventListener('DOMContentLoaded', function () { KTSigninGeneral.init(); });
+        }
+
+        // Lockout Live Countdown Controller
+        (function () {
+            var banner = document.getElementById('lockoutBanner');
+            if (!banner) return;
+
+            var remaining = parseInt(banner.getAttribute('data-remaining'), 10) || 0;
+            var timerDisplay = document.getElementById('lockoutTimerDisplay');
+            var submitBtn = document.getElementById('kt_sign_in_submit');
+
+            if (remaining > 0 && submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.6';
+                submitBtn.style.cursor = 'not-allowed';
+            }
+
+            function formatTime(sec) {
+                var m = Math.floor(sec / 60);
+                var s = sec % 60;
+                return (m < 10 ? '0' + m : m) + ':' + (s < 10 ? '0' + s : s);
+            }
+
+            function tick() {
+                if (remaining <= 0) {
+                    if (timerDisplay) timerDisplay.textContent = '00:00';
+                    if (banner) {
+                        banner.style.transition = 'opacity 0.4s, transform 0.4s';
+                        banner.style.opacity = '0';
+                        banner.style.transform = 'translateY(-10px)';
+                        setTimeout(function () {
+                            if (banner.parentNode) banner.parentNode.removeChild(banner);
+                        }, 400);
+                    }
+                    if (submitBtn) {
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        submitBtn.style.cursor = 'pointer';
+                    }
+                    resetTurnstile();
+                    IgniteToasts.show('Account Unlocked', 'The temporary lockout period has ended. You may now sign in.', 'success');
+                    return;
+                }
+
+                if (timerDisplay) timerDisplay.textContent = formatTime(remaining);
+                remaining--;
+                setTimeout(tick, 1000);
+            }
+
+            tick();
+        })();
+
+        function showUnavailableToast(msg) {
+            IgniteToasts.show('Notice', msg, 'info');
+        }
+
+        // Submit the sign-in form to the external (Google) login endpoint. The
+        // button is intentionally type="button" so that pressing Enter in the
+        // email/password fields submits the normal login instead of this button.
+        function submitGoogleLogin(el) {
+            var form = document.getElementById('kt_sign_in_form');
+            if (!form) return;
+
+            var provider = document.createElement('input');
+            provider.type = 'hidden';
+            provider.name = 'provider';
+            provider.value = 'Google';
+            form.appendChild(provider);
+
+            form.action = el.getAttribute('data-google-url');
+            form.submit();
+        }
+    </script>
+
+    <!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>

@@ -1,0 +1,2874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#005E78" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Feature Book" />
+<link rel="icon" type="image/png" href="/tab-logo-lms.png" />
+<link rel="shortcut icon" type="image/png" href="/tab-logo-lms.png" />
+<link rel="apple-touch-icon" href="/pwa-icon-192.png" />
+<title>IGNITE LMS — Feature Book</title>
+<meta name="description" content="A plain-language picture book of IGNITE LMS. See every feature — classes, fees, salary, parents — working on screen." />
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link href="/css/admin-portal-preview.css" rel="stylesheet" />
+
+<style>
+:root{
+  --primary:#005E78;
+  --secondary:#0A7B99;
+  --accent:#18C3D6;
+  --dark:#003E4F;
+  --bg:#F5FAFC;
+  --white:#FFFFFF;
+  --heading:#0F172A;
+  --paragraph:#475569;
+  --success:#22C55E;
+  --line:#E3EEF2;
+  --muted:#7E93A0;
+  --radius-sm:14px;
+  --radius:20px;
+  --radius-lg:28px;
+  --shadow-sm:0 4px 16px rgba(0,62,79,.06);
+  --shadow:0 18px 48px -18px rgba(0,62,79,.22);
+  --shadow-lg:0 40px 90px -40px rgba(0,62,79,.45);
+  --grad-brand:linear-gradient(120deg,var(--primary) 0%,var(--secondary) 55%,var(--accent) 120%);
+  --grad-soft:radial-gradient(1200px 700px at 80% -10%, rgba(24,195,214,.18), transparent 60%),
+              radial-gradient(900px 600px at -10% 10%, rgba(0,94,120,.14), transparent 55%);
+  --maxw:1180px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --nav-h:72px;
+  --safe-b:env(safe-area-inset-bottom, 0px);
+  --safe-t:env(safe-area-inset-top, 0px);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;overflow-x:hidden;width:100%;scroll-padding-top:calc(var(--nav-h) + 18px);}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  color:var(--paragraph);
+  background:var(--bg);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  width:100%;
+  padding-bottom:calc(86px + var(--safe-b));
+}
+body.menu-open{overflow:hidden;height:100dvh;}
+button,a{touch-action:manipulation;}
+h1,h2,h3,h4,.font-display{font-family:'Poppins',sans-serif;color:var(--heading);letter-spacing:-.02em;line-height:1.12;}
+a{text-decoration:none;color:inherit;}
+img{max-width:100%;display:block;}
+::selection{background:rgba(24,195,214,.25);}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(18px,4.5vw,40px);}
+.sec{padding-block:clamp(56px,8vw,108px);position:relative;}
+.sec.alt{background:var(--white);}
+.sec-head{margin-bottom:clamp(28px,4vw,48px);max-width:720px;}
+.sec-head.center{text-align:center;margin-inline:auto;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--secondary);margin-bottom:12px;
+}
+.eyebrow::before{content:"";width:22px;height:2px;border-radius:2px;background:var(--accent);}
+.lead{font-size:clamp(1rem,1.4vw,1.12rem);color:var(--paragraph);max-width:62ch;}
+.h-xl{font-size:clamp(2.05rem,5.2vw,3.55rem);font-weight:800;}
+.h-lg{font-size:clamp(1.7rem,3.4vw,2.55rem);font-weight:700;margin-bottom:12px;}
+.text-grad{background:linear-gradient(100deg,var(--secondary),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+.btn-ig{
+  display:inline-flex;align-items:center;justify-content:center;gap:.55rem;
+  font-family:'Inter';font-weight:600;font-size:.95rem;
+  padding:.85rem 1.45rem;border-radius:var(--radius-sm);
+  border:1.5px solid transparent;cursor:pointer;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease),color .25s;
+  white-space:nowrap;min-height:46px;
+}
+.btn-ig i{transition:transform .35s var(--ease);}
+.btn-primary-ig{background:var(--grad-brand);color:#fff;box-shadow:0 12px 28px -10px rgba(0,94,120,.65);background-size:140% 140%;}
+.btn-primary-ig:hover{transform:translateY(-3px);box-shadow:0 20px 38px -12px rgba(0,94,120,.7);color:#fff;background-position:100% 100%;}
+.btn-primary-ig:hover i{transform:translateX(3px);}
+.btn-outline-ig{background:#fff;color:var(--primary);border-color:var(--line);}
+.btn-outline-ig:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow-sm);color:var(--primary);}
+.btn-ghost-ig{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3);backdrop-filter:blur(6px);}
+.btn-ghost-ig:hover{background:rgba(255,255,255,.22);color:#fff;transform:translateY(-3px);}
+.btn-lg-ig{padding:1.05rem 1.8rem;font-size:1.02rem;min-height:52px;}
+
+.read-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:1200;
+  background:var(--grad-brand);transform-origin:left;
+  transition:width .12s linear;
+}
+
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:1000;
+  padding:calc(10px + var(--safe-t)) 0 12px;
+  transition:background .4s,box-shadow .4s,border-color .4s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(255,255,255,.86);backdrop-filter:blur(16px) saturate(160%);
+  box-shadow:0 8px 30px -18px rgba(0,62,79,.4);border-color:var(--line);
+}
+.nav .wrap{display:flex;align-items:center;gap:20px;}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Poppins';font-weight:800;font-size:1.18rem;color:var(--heading);}
+.brand .mark{width:40px;height:40px;border-radius:11px;overflow:hidden;flex:none;background:transparent;}
+.brand .mark img{width:100%;height:100%;object-fit:contain;}
+.brand b{color:var(--primary);}
+.nav-links{display:flex;align-items:center;gap:2px;margin-inline:auto;}
+.nav-links a{
+  font-size:.9rem;font-weight:500;color:var(--paragraph);padding:.5rem .75rem;border-radius:10px;
+  transition:color .25s,background .25s;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.nav-links a:hover,.nav-links a.on{color:var(--primary);background:rgba(24,195,214,.1);}
+.nav-cta{display:flex;align-items:center;gap:10px;}
+.nav-toggle{
+  display:none;background:none;border:none;font-size:1.25rem;color:var(--primary);cursor:pointer;
+  width:44px;height:44px;align-items:center;justify-content:center;border-radius:10px;flex:none;
+}
+.menu-backdrop{display:none;}
+.mobile-menu{display:none;}
+
+.hero{position:relative;padding-top:clamp(118px,18vw,168px);padding-bottom:clamp(52px,8vw,96px);overflow:hidden;background:var(--white);}
+.hero::after{content:"";position:absolute;inset:0;background:var(--grad-soft);pointer-events:none;}
+.hero .wrap{position:relative;z-index:2;}
+.blob{position:absolute;border-radius:50%;filter:blur(64px);opacity:.48;z-index:1;animation:float-blob 18s var(--ease) infinite;pointer-events:none;}
+.blob.b1{width:420px;height:420px;background:rgba(24,195,214,.38);top:-120px;right:-80px;}
+.blob.b2{width:340px;height:340px;background:rgba(0,94,120,.28);bottom:-120px;left:-90px;animation-delay:-6s;}
+@keyframes float-blob{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(28px,-22px) scale(1.06);}}
+
+.hero-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,4vw,56px);align-items:center;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--line);
+  padding:.45rem .9rem;border-radius:999px;font-size:.82rem;font-weight:600;color:var(--primary);
+  box-shadow:var(--shadow-sm);margin-bottom:20px;
+}
+.hero-badge .dot{width:8px;height:8px;border-radius:50%;background:var(--success);animation:pulse-dot 2.2s infinite;}
+@keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55);}70%{box-shadow:0 0 0 9px rgba(34,197,94,0);}100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}}
+.hero h1{font-size:clamp(2rem,4.6vw,3.35rem);font-weight:800;margin-bottom:16px;}
+.hero .sub{font-size:clamp(1.02rem,1.5vw,1.18rem);max-width:52ch;margin-bottom:28px;}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:460px;}
+.hs{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 12px;box-shadow:var(--shadow-sm);}
+.hs b{display:block;font-family:'Poppins';font-size:1.35rem;color:var(--primary);line-height:1;}
+.hs span{font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+
+.stage{position:relative;}
+.mosaic{display:grid;grid-template-columns:1.15fr .85fr;gap:12px;align-items:stretch;}
+.mock{
+  background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;
+  box-shadow:var(--shadow);display:flex;flex-direction:column;
+}
+.mock-bar{
+  background:linear-gradient(120deg,var(--primary),var(--secondary));
+  color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+}
+.mock-bar b{font-size:.82rem;font-weight:700;}
+.mock-bar span{font-size:.7rem;opacity:.78;}
+.mock-body{padding:14px;background:var(--bg);flex:1;display:flex;flex-direction:column;gap:8px;}
+.hero-chap{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 11px;}
+.hero-chap .n{width:26px;height:26px;border-radius:8px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;font-size:.68rem;font-weight:800;flex:none;}
+.hero-chap b{display:block;font-size:.82rem;font-weight:700;color:var(--heading);line-height:1.2;}
+.hero-chap span{display:block;font-size:.68rem;color:var(--muted);margin-top:1px;}
+.shot-frame{margin-top:0;}
+.shot-frame .win-body{padding:0;background:#f0f3f5;}
+.hero .mock{height:100%;}
+.shot-cap{text-align:center;margin-top:10px;font-size:.78rem;font-weight:600;color:var(--muted);}
+
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 12px;}
+.kpi small{font-size:.62rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;}
+.kpi b{display:block;font-family:'Poppins';font-size:1.05rem;color:var(--heading);}
+.kpi em{font-style:normal;font-size:.68rem;color:var(--success);font-weight:600;}
+.side-cards{display:flex;flex-direction:column;gap:12px;}
+.glass-mini{
+  background:rgba(255,255,255,.82);backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:14px;
+  box-shadow:var(--shadow);animation:bob 6s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.glass-mini .gi{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:#fff;background:var(--grad-brand);margin-bottom:8px;}
+.glass-mini .gt{font-size:.72rem;color:var(--muted);font-weight:600;}
+.glass-mini .gv{font-family:'Poppins';font-weight:700;color:var(--heading);font-size:.95rem;}
+
+.toc-strip{
+  position:sticky;top:calc(var(--nav-h) - 8px);z-index:50;
+  background:rgba(245,250,252,.92);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:10px 0;
+}
+.toc-scroll{
+  display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  padding-bottom:2px;overscroll-behavior-x:contain;overscroll-behavior-y:none;touch-action:pan-x;
+}
+.toc-scroll::-webkit-scrollbar{display:none;}
+.toc-chip{
+  flex:none;display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;
+  font-size:.78rem;font-weight:600;color:var(--paragraph);white-space:nowrap;
+  transition:all .25s var(--ease);
+}
+.toc-chip .n{font-weight:800;color:var(--secondary);}
+.toc-chip:hover,.toc-chip.on{background:var(--grad-brand);color:#fff;border-color:transparent;box-shadow:0 10px 20px -12px rgba(0,94,120,.7);}
+.toc-chip:hover .n,.toc-chip.on .n{color:#fff;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;}
+
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 18px;box-shadow:var(--shadow-sm);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;
+}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(24,195,214,.45);}
+.card.accent{border-top:3px solid var(--accent);}
+.card h3{font-size:1.02rem;margin-bottom:6px;}
+.card p{font-size:.9rem;}
+.idx{
+  width:34px;height:34px;border-radius:11px;background:var(--grad-brand);color:#fff;
+  font-size:.78rem;font-weight:800;display:grid;place-items:center;margin-bottom:12px;
+}
+
+.who-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;}
+.who-pills span{
+  font-size:.75rem;font-weight:700;padding:6px 12px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);color:var(--primary);
+}
+.fmap-cat{
+  display:flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--secondary);margin:28px 0 12px;
+}
+.fmap-cat::after{content:"";flex:1;height:1px;background:var(--line);}
+.sec-head + .fmap-cat{margin-top:4px;}
+.fmap{
+  display:flex;flex-direction:column;gap:5px;height:100%;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 15px 14px;box-shadow:var(--shadow-sm);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;
+}
+.fmap:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(24,195,214,.45);color:inherit;}
+.fmap .n{
+  font-family:'Poppins';font-size:.68rem;font-weight:800;letter-spacing:.12em;
+  color:var(--secondary);
+}
+.fmap .fi{
+  width:36px;height:36px;border-radius:11px;background:var(--grad-brand);
+  color:#fff;display:grid;place-items:center;font-size:.92rem;margin:2px 0 4px;
+}
+.fmap h3{font-size:.94rem;margin:0;}
+.fmap p{font-size:.8rem;flex:1;margin:0;}
+.fmap .go{
+  font-size:.74rem;font-weight:700;color:var(--secondary);
+  display:inline-flex;align-items:center;gap:6px;margin-top:6px;
+}
+.fmap .go i{transition:transform .35s var(--ease);}
+.fmap:hover .go i{transform:translateX(3px);}
+
+.story{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(22px,4vw,48px);align-items:center;
+}
+.story.flip{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);}
+.story.flip .story-copy{order:2;}
+.story.full{grid-template-columns:1fr;}
+.plain{
+  display:flex;gap:12px;align-items:flex-start;
+  background:linear-gradient(180deg,rgba(24,195,214,.1),rgba(24,195,214,.04));
+  border:1px solid rgba(24,195,214,.22);
+  border-radius:16px;padding:14px 16px;margin:16px 0 20px;
+}
+.plain i{color:var(--secondary);margin-top:3px;font-size:.95rem;}
+.plain b{display:block;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--secondary);margin-bottom:3px;}
+.plain span{display:block;font-size:.95rem;color:var(--heading);font-weight:500;line-height:1.45;}
+.steps{list-style:none;display:flex;flex-direction:column;gap:14px;margin:0 0 18px;padding:0;}
+.steps li{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;}
+.steps .sn{
+  width:36px;height:36px;border-radius:12px;background:var(--grad-brand);color:#fff;
+  display:grid;place-items:center;font-family:'Poppins';font-weight:800;font-size:.8rem;flex:none;
+}
+.steps b{display:block;font-size:.95rem;color:var(--heading);margin-bottom:2px;}
+.steps span{font-size:.86rem;color:var(--paragraph);}
+.who-sees{display:flex;flex-wrap:wrap;gap:8px;}
+.who-sees em{
+  font-style:normal;font-size:.72rem;font-weight:700;padding:6px 11px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;color:var(--paragraph);
+}
+.who-sees em.admin{background:#eef6ff;border-color:#cfe3ff;color:#1b84ff;}
+.who-sees em.teacher{background:#f0fdf9;border-color:#b8eadc;color:#0d9488;}
+.who-sees em.student{background:#fff7ed;border-color:#fed7aa;color:#c2410c;}
+.who-sees em.parent{background:#f5f3ff;border-color:#ddd6fe;color:#7c3aed;}
+.work-kicker{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;
+  font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--secondary);
+}
+.work-kicker::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 4px rgba(34,197,94,.16);}
+.walk-banner{
+  margin-top:36px;padding:28px 26px;border-radius:var(--radius-lg);
+  background:linear-gradient(135deg,var(--primary),var(--dark));color:#fff;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;
+}
+.walk-banner h3{color:#fff;font-size:1.2rem;margin:0 0 6px;}
+.walk-banner p{margin:0;opacity:.85;max-width:46ch;}
+.next-feat{
+  display:inline-flex;align-items:center;gap:8px;margin-top:20px;
+  font-size:.88rem;font-weight:700;color:var(--secondary);
+}
+.next-feat i{transition:transform .3s var(--ease);}
+.next-feat:hover i{transform:translateX(3px);}
+.tree{background:#fff;border:1px solid var(--line);border-radius:16px;padding:6px 12px;}
+.tree .trow{display:flex;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px dashed var(--line);font-size:.86rem;}
+.tree .trow:last-child{border-bottom:none;}
+.tree .trow i{width:28px;height:28px;border-radius:8px;background:rgba(24,195,214,.12);color:var(--secondary);display:grid;place-items:center;font-size:.72rem;}
+.tree .trow b{color:var(--heading);}
+.tree .pad{padding-left:28px;}
+.enrol-form{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;}
+.enrol-form label{display:block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:8px 0 4px;}
+.enrol-form .box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.84rem;color:var(--heading);font-weight:600;}
+
+.how-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0 8px;}
+.how{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 16px;box-shadow:var(--shadow-sm);}
+.how .hn{width:32px;height:32px;border-radius:10px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;font-family:'Poppins';font-weight:800;font-size:.78rem;margin-bottom:10px;}
+.how b{display:block;font-size:.95rem;color:var(--heading);margin-bottom:4px;}
+.how span{font-size:.84rem;color:var(--paragraph);}
+.work-block{display:flex;flex-direction:column;gap:8px;scroll-margin-top:calc(var(--nav-h) + 28px);}
+.work-block .work-kicker{margin-bottom:0;}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.ba{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow-sm);}
+.ba.good{border-color:rgba(24,195,214,.4);background:linear-gradient(180deg,rgba(24,195,214,.1),#fff 42%);}
+.ba h3{font-size:1.08rem;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.ba h3 i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:.75rem;}
+.ba ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+.ba li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:.9rem;line-height:1.4;}
+.ba li i{margin-top:3px;color:var(--muted);}
+.ba.good li i{color:var(--success);}
+.ba.bad h3 i{background:#fef2f2;color:#dc2626;}
+.ba.good h3 i{background:rgba(34,197,94,.14);color:var(--success);}
+
+.path-head{margin:36px 0 14px;font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--secondary);}
+.path-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;}
+.path{
+  display:flex;flex-direction:column;gap:6px;height:100%;
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px 15px 14px;box-shadow:var(--shadow-sm);color:inherit;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s;
+}
+.path:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(24,195,214,.45);color:inherit;}
+.path .fi{width:36px;height:36px;border-radius:11px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;font-size:.92rem;}
+.path b{font-size:.98rem;color:var(--heading);}
+.path span{font-size:.8rem;color:var(--paragraph);flex:1;}
+.path .go{font-size:.74rem;font-weight:700;color:var(--secondary);margin-top:4px;}
+.tap-hint{display:block;margin:8px 0 0;font-size:.75rem;font-weight:600;color:var(--secondary);}
+.ask-wa{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:22px;padding:16px 18px;border-radius:18px;
+  background:#ecfdf3;border:1px solid #bbf7d0;color:inherit;
+}
+.ask-wa b{display:block;font-size:.95rem;color:#14532d;}
+.ask-wa > div span{font-size:.82rem;color:#166534;}
+.ask-wa .btn-ig{background:#25D366;color:#fff;border:0;font-size:.95rem;}
+.ask-wa .btn-ig:hover{color:#fff;background:#1fba5a;}
+.hero-product-wrap{position:relative;}
+.hero-product{max-height:min(520px,64vh);position:relative;}
+.hero-product .win-body{padding:0;background:#f0f3f5;max-height:min(470px,56vh);overflow:hidden;}
+.hero-product::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:80px;
+  background:linear-gradient(transparent,#fff);pointer-events:none;z-index:2;
+}
+.hero-product .ap-ui{pointer-events:none;}
+.hero-watch{
+  display:inline-flex;align-items:center;gap:8px;margin-top:12px;
+  font-size:.88rem;font-weight:700;color:var(--secondary);
+}
+.lec-status.live{color:#15803d;background:rgba(34,197,94,.12);}
+.lec-status.live .dot{background:var(--success);}
+button.btn-ig{font:inherit;}
+.ba-rows{display:flex;flex-direction:column;gap:10px;}
+.ba-row{
+  display:grid;grid-template-columns:140px 1fr 1fr;gap:12px;align-items:start;
+  background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;
+  box-shadow:var(--shadow-sm);
+}
+.ba-row .topic{font-size:.82rem;font-weight:800;color:var(--heading);padding-top:2px;}
+.ba-row .no{font-size:.86rem;color:var(--muted);}
+.ba-row .yes{font-size:.86rem;color:var(--primary);font-weight:600;}
+.ba-row .no::before{content:"Without — ";font-weight:700;color:var(--muted);}
+.ba-row .yes::before{content:"With IGNITE — ";font-weight:700;color:var(--primary);}
+.admin-fold{
+  margin-top:18px;background:#fff;border:1px solid var(--line);
+  border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.admin-fold summary{
+  list-style:none;cursor:pointer;padding:16px 18px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.admin-fold summary::-webkit-details-marker{display:none;}
+.admin-fold summary b{display:block;font-size:.95rem;color:var(--heading);}
+.admin-fold summary small{display:block;font-size:.8rem;font-weight:500;color:var(--muted);margin-top:2px;}
+.admin-fold summary i{color:var(--secondary);transition:transform .25s var(--ease);}
+.admin-fold[open] summary i{transform:rotate(180deg);}
+
+.feat{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px 16px;}
+.ck{width:22px;height:22px;border-radius:8px;background:var(--grad-brand);flex-shrink:0;display:grid;place-items:center;color:#fff;font-size:.62rem;margin-top:1px;}
+.ftt{font-size:.95rem;font-weight:700;color:var(--heading);}
+.fts{font-size:.82rem;color:var(--muted);}
+
+.flow-band{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;
+  background:linear-gradient(135deg,var(--primary),var(--dark));
+  color:#fff;border-radius:var(--radius-lg);padding:22px 18px;box-shadow:var(--shadow);
+}
+.node{text-align:center;padding:12px 16px;border:1px solid rgba(255,255,255,.2);border-radius:16px;min-width:108px;background:rgba(255,255,255,.06);}
+.node b{display:block;font-size:.92rem;}
+.node span{font-size:.72rem;opacity:.75;}
+.node.core{background:#fff;color:var(--primary);border-color:#fff;}
+.arr{color:rgba(255,255,255,.45);font-size:1.1rem;}
+
+.role{text-align:center;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 12px;box-shadow:var(--shadow-sm);transition:transform .35s var(--ease);}
+.role:hover{transform:translateY(-4px);}
+.role-av{
+  width:52px;height:52px;margin:0 auto 10px;border-radius:16px;background:var(--grad-brand);
+  color:#fff;display:grid;place-items:center;font-size:.82rem;font-weight:800;
+}
+.role h3{font-size:.95rem;margin-bottom:4px;}
+.role p{font-size:.78rem;margin-bottom:10px;}
+.tag{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:rgba(24,195,214,.12);color:var(--secondary);padding:4px 8px;border-radius:999px;}
+
+.pill{font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:5px 9px;border-radius:999px;background:rgba(24,195,214,.12);color:var(--secondary);border:1px solid rgba(24,195,214,.22);white-space:nowrap;}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
+.row:last-child{border-bottom:none;}
+.av{width:32px;height:32px;border-radius:10px;background:var(--grad-brand);color:#fff;font-size:.68rem;font-weight:700;display:grid;place-items:center;flex-shrink:0;}
+.row b{font-size:.88rem;display:block;color:var(--heading);}
+.row small{font-size:.72rem;color:var(--muted);}
+
+.inbox-ui{
+  display:grid;grid-template-columns:168px 250px 1fr;min-height:420px;background:#fff;
+  border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);
+}
+.inbox-folders{background:#f7fbfc;border-right:1px solid var(--line);padding:14px 10px;}
+.inbox-folders .if-title{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:0 8px 10px;}
+.ifolder{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;font-size:.8rem;font-weight:600;color:var(--paragraph);margin-bottom:2px;}
+.ifolder i{width:16px;text-align:center;color:var(--secondary);font-size:.78rem;}
+.ifolder.on{background:rgba(24,195,214,.14);color:var(--primary);}
+.ifolder .badge{margin-left:auto;background:var(--primary);color:#fff;font-size:.62rem;font-weight:800;padding:1px 7px;border-radius:999px;}
+.inbox-compose{margin-top:12px;width:100%;justify-content:center;padding:.65rem 1rem;font-size:.8rem;}
+.inbox-list{border-right:1px solid var(--line);background:#fff;display:flex;flex-direction:column;}
+.inbox-search{margin:12px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:.75rem;color:var(--muted);display:flex;gap:8px;align-items:center;}
+.ithread{display:flex;gap:10px;padding:11px 12px;border-bottom:1px solid var(--line);position:relative;}
+.ithread.on{background:rgba(24,195,214,.08);}
+.ithread.unread{background:#f4fbfd;}
+.ithread.unread::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--accent);border-radius:0 3px 3px 0;}
+.ithread .av{width:38px;height:38px;border-radius:11px;font-size:.72rem;}
+.ithread .av.t{background:#0d9488;}
+.ithread .av.p{background:#7c3aed;}
+.ithread .av.b{background:var(--primary);}
+.ithread .meta{flex:1;min-width:0;}
+.ithread .who{display:flex;justify-content:space-between;gap:8px;align-items:baseline;}
+.ithread .who b{font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ithread .who time{font-size:.65rem;color:var(--muted);flex:none;}
+.ithread .subj{font-size:.74rem;font-weight:700;color:var(--heading);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ithread .prev{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.role-chip{display:inline-block;font-size:.58rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:6px;margin-top:3px;}
+.role-chip.stu{background:#eef6ff;color:#1b84ff;}
+.role-chip.tea{background:#f0fdf9;color:#0d9488;}
+.role-chip.par{background:#f5f3ff;color:#7c3aed;}
+.inbox-chat{background:linear-gradient(180deg,#f7fbfc,#eef6f8);display:flex;flex-direction:column;min-width:0;}
+.chat-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:#fff;border-bottom:1px solid var(--line);}
+.chat-head .av{width:40px;height:40px;}
+.chat-head .name{font-size:.88rem;font-weight:800;color:var(--heading);}
+.chat-head .sub{font-size:.72rem;color:var(--muted);}
+.chat-body{flex:1;padding:16px 14px;display:flex;flex-direction:column;gap:10px;}
+.bubble{background:#fff;border:1px solid var(--line);padding:10px 12px;border-radius:16px 16px 16px 5px;max-width:86%;font-size:.84rem;color:var(--heading);box-shadow:var(--shadow-sm);}
+.bubble .bh{display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.bubble .bh b{font-size:.72rem;}
+.bubble .bh time{margin-left:auto;font-size:.64rem;color:var(--muted);font-weight:600;}
+.bubble.me{background:linear-gradient(135deg,rgba(0,94,120,.1),rgba(24,195,214,.08));border-color:rgba(24,195,214,.28);align-self:flex-end;border-radius:16px 16px 5px 16px;}
+.bubble .file{display:flex;align-items:center;gap:8px;margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:.74rem;font-weight:700;}
+.bubble .file i{color:var(--secondary);}
+.bubble .seen{display:block;margin-top:6px;font-size:.64rem;color:var(--secondary);font-weight:600;text-align:right;}
+.chat-compose{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid var(--line);align-items:center;}
+.chat-compose .box{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.8rem;color:var(--muted);}
+.chat-send{width:40px;height:40px;border-radius:12px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;flex:none;}
+
+.att{width:100%;border-collapse:collapse;font-size:.85rem;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line);}
+.att th{background:var(--primary);color:#fff;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:10px 12px;text-align:left;}
+.att td{padding:10px 12px;border-top:1px solid var(--line);}
+.st{display:inline-block;padding:3px 8px;font-size:.68rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;border-radius:999px;background:rgba(34,197,94,.12);color:#15803d;}
+.st.part{background:rgba(245,158,11,.14);color:#b45309;}
+.st.late{background:rgba(24,195,214,.14);color:var(--secondary);}
+.st.off{background:rgba(239,68,68,.12);color:#dc2626;}
+
+.stat{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:12px;}
+.stat b{display:block;font-family:'Poppins';font-size:1.35rem;color:var(--primary);line-height:1;}
+.stat span{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
+.stat em{display:block;font-style:normal;font-size:.72rem;color:var(--secondary);margin-top:3px;}
+
+.flow{display:flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:.82rem;font-weight:700;color:var(--primary);}
+.flow span{padding:7px 12px;border-radius:999px;border:1px solid rgba(24,195,214,.25);background:rgba(24,195,214,.1);}
+.flow em{font-style:normal;color:var(--muted);font-weight:500;}
+
+.wb-canvas{
+  min-height:150px;background:linear-gradient(180deg,#f8fcfd,#eef7fa);
+  border-radius:14px;padding:18px 16px;color:var(--dark);
+}
+.wb-canvas .eq{font-family:'Poppins';font-size:clamp(1.1rem,2.4vw,1.55rem);font-weight:700;margin:8px 0;}
+
+.parent-mock{background:linear-gradient(160deg,var(--primary),var(--dark));color:#fff;border-color:transparent;}
+.parent-mock .mock-bar{background:transparent;border-bottom:1px solid rgba(255,255,255,.16);}
+.pstat{border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:14px;background:rgba(255,255,255,.06);}
+.pstat b{font-family:'Poppins';font-size:1.4rem;display:block;}
+.pstat span{font-size:.75rem;opacity:.8;}
+
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;}
+.device{
+  background:#111827;border-radius:36px;padding:12px 10px 14px;
+  box-shadow:0 30px 60px -24px rgba(0,62,79,.55), inset 0 0 0 1px rgba(255,255,255,.08);
+  position:relative;
+}
+.device .notch{
+  position:absolute;top:16px;left:50%;transform:translateX(-50%);
+  width:78px;height:16px;background:#0b1220;border-radius:0 0 12px 12px;z-index:4;
+}
+.device-screen{background:var(--bg);color:var(--heading);border-radius:28px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;position:relative;}
+.status-bar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px 4px;font-size:.68rem;font-weight:700;color:#0f172a;}
+.status-bar .sig{display:flex;gap:5px;align-items:center;font-size:.7rem;color:#334155;}
+.app-hero{background:var(--grad-brand);color:#fff;padding:10px 14px 16px;position:relative;overflow:hidden;}
+.app-hero::after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;background:rgba(255,255,255,.12);right:-40px;top:-50px;}
+.app-hero small{font-size:.68rem;opacity:.85;position:relative;}
+.app-hero b{display:block;font-family:'Poppins';font-size:1.05rem;position:relative;}
+.app-hero .child-switch{display:flex;gap:6px;margin-top:10px;position:relative;}
+.app-hero .child-switch span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:4px 10px;border-radius:999px;font-size:.68rem;font-weight:700;}
+.app-hero .child-switch span.on{background:#fff;color:var(--primary);}
+.app-body{padding:12px;display:flex;flex-direction:column;gap:10px;flex:1;}
+.app-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:var(--shadow-sm);}
+.app-card .k{display:flex;align-items:center;gap:10px;}
+.app-card .ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:#fff;background:var(--grad-brand);font-size:.78rem;flex:none;}
+.app-card .ttl{font-size:.82rem;font-weight:800;color:var(--heading);}
+.app-card .sub{font-size:.7rem;color:var(--muted);}
+.app-card .join{margin-top:10px;width:100%;background:var(--grad-brand);color:#fff;border:none;border-radius:11px;padding:8px;font-size:.78rem;font-weight:700;}
+.live-dot{width:7px;height:7px;border-radius:50%;background:#ef4444;display:inline-block;box-shadow:0 0 0 0 rgba(239,68,68,.5);animation:pulse-dot 1.6s infinite;margin-right:4px;}
+.app-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
+.app-kpis div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center;}
+.app-kpis b{display:block;font-family:'Poppins';font-size:.92rem;color:var(--heading);line-height:1.1;}
+.app-kpis span{font-size:.58rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);}
+.app-tabs{display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid var(--line);padding:8px 4px 10px;margin-top:auto;}
+.app-tabs span{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.55rem;font-weight:700;color:var(--muted);}
+.app-tabs span i{font-size:.92rem;}
+.app-tabs span.on{color:var(--primary);}
+.home-ind{width:92px;height:4px;border-radius:999px;background:#0b1220;margin:8px auto 0;opacity:.85;}
+.device-cap{text-align:center;margin-top:12px;font-size:.82rem;font-weight:700;color:var(--heading);}
+.device-cap small{display:block;font-size:.72rem;font-weight:500;color:var(--muted);margin-top:2px;}
+.li{display:flex;align-items:center;gap:7px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.76rem;color:var(--ink,#12343d);line-height:1.25;}
+.li i{width:6px;height:6px;background:var(--accent);border-radius:50%;flex:none;}
+
+.admin-desk{display:grid;grid-template-columns:190px 1fr;min-height:340px;background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);margin-top:22px;}
+.admin-side{background:#04222b;color:rgba(255,255,255,.78);padding:16px 12px;}
+.admin-side .brand-mini{display:flex;align-items:center;gap:8px;color:#fff;font-family:'Poppins';font-weight:800;font-size:.85rem;margin-bottom:16px;}
+.admin-side a{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);}
+.admin-side a.on{background:rgba(24,195,214,.18);color:#fff;}
+.admin-main{background:var(--bg);padding:16px;}
+.admin-main .ah{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.admin-main .ah h4{font-size:1rem;margin:0;}
+.admin-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px;}
+.admin-list{background:#fff;border:1px solid var(--line);border-radius:16px;padding:4px 12px;}
+
+.lec-widget{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);}
+.lec-widget .lw-top{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line);}
+.lec-status{display:inline-flex;align-items:center;gap:7px;font-size:.75rem;font-weight:800;color:#b45309;background:rgba(245,158,11,.12);padding:5px 10px;border-radius:999px;}
+.lec-status .dot{width:8px;height:8px;border-radius:50%;background:#f59e0b;animation:pulse-dot 1.8s infinite;}
+.lec-body{padding:16px;}
+.lec-subj{display:flex;gap:12px;align-items:center;margin-bottom:14px;}
+.lec-subj .ic{width:44px;height:44px;border-radius:14px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;font-size:1.1rem;}
+.lec-stage{background:linear-gradient(160deg,#04222b,var(--primary));color:#fff;border-radius:16px;padding:18px;text-align:center;}
+.lec-stage .count{font-family:'Poppins';font-size:1.8rem;font-weight:800;letter-spacing:.08em;}
+.lec-stage small{display:block;opacity:.75;margin-top:4px;}
+.lec-foot{padding:0 16px 16px;}
+.lec-foot .btn-ig{width:100%;}
+
+.win{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);}
+.win-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;background:#0c2933;color:#fff;}
+.win-bar .dots{display:flex;gap:5px;}
+.win-bar .dots i{width:9px;height:9px;border-radius:50%;background:#3b5560;display:block;}
+.win-bar .dots i:nth-child(1){background:#ff5f57;}
+.win-bar .dots i:nth-child(2){background:#febc2e;}
+.win-bar .dots i:nth-child(3){background:#28c840;}
+.win-bar b{font-size:.78rem;font-weight:700;}
+.win-bar span{margin-left:auto;font-size:.68rem;opacity:.7;}
+.win-body{padding:14px;background:var(--bg);}
+.toolstrip{display:flex;gap:6px;padding:8px 10px;background:#fff;border-bottom:1px solid var(--line);}
+.toolstrip em{width:32px;height:32px;border-radius:9px;display:grid;place-items:center;background:var(--bg);border:1px solid var(--line);color:var(--secondary);font-style:normal;font-size:.78rem;}
+.toolstrip em.on{background:var(--grad-brand);color:#fff;border-color:transparent;}
+.mini-bars{display:flex;align-items:flex-end;gap:6px;height:72px;padding:4px 2px;}
+.mini-bars i{flex:1;border-radius:5px 5px 2px 2px;background:linear-gradient(var(--accent),var(--secondary));display:block;}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;}
+.week .d{background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 6px;text-align:center;min-height:72px;}
+.week .d b{display:block;font-size:.62rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;}
+.week .d span{display:block;font-size:.78rem;font-weight:800;color:var(--heading);margin:4px 0;}
+.week .d small{display:block;font-size:.62rem;color:var(--secondary);font-weight:700;}
+.week .d.on{border-color:var(--accent);background:rgba(24,195,214,.08);}
+.week .d.clash{border-color:#f59e0b;background:rgba(245,158,11,.1);}
+.sw{width:38px;height:22px;border-radius:999px;background:#cbd5e1;position:relative;flex:none;border:0;cursor:pointer;padding:0;}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:left .2s var(--ease);}
+.sw.on{background:var(--secondary);}
+.sw.on::after{left:19px;}
+.set-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);}
+.set-row:last-child{border-bottom:none;}
+.set-row .si{width:36px;height:36px;border-radius:11px;background:rgba(24,195,214,.14);color:var(--secondary);display:grid;place-items:center;flex:none;}
+.set-row .stt{font-size:.88rem;font-weight:700;color:var(--heading);}
+.set-row .sts{font-size:.75rem;color:var(--muted);}
+.quota{height:8px;border-radius:999px;background:#e2eef2;overflow:hidden;margin-top:8px;}
+.quota i{display:block;height:100%;width:68%;background:var(--grad-brand);border-radius:999px;}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.filters span{font-size:.7rem;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--paragraph);}
+.filters span.on{background:var(--primary);color:#fff;border-color:var(--primary);}
+.stars{color:#f59e0b;letter-spacing:2px;font-size:.85rem;}
+.act{display:inline-flex;gap:6px;}
+.act b,.act em,.act button{font-style:normal;font-size:.68rem;font-weight:800;padding:5px 9px;border-radius:8px;border:0;cursor:pointer;font-family:inherit;line-height:1.2;}
+.act b,.act button.ok{background:rgba(34,197,94,.14);color:#15803d;}
+.act em,.act button.no{background:rgba(239,68,68,.12);color:#dc2626;}
+.role-desk{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);text-align:left;}
+.role-desk .rh{display:flex;align-items:center;gap:8px;padding:10px 12px;background:var(--grad-brand);color:#fff;}
+.role-desk .rh .av{width:28px;height:28px;font-size:.62rem;}
+.role-desk .rb{padding:10px 12px;display:flex;flex-direction:column;gap:6px;}
+.role-desk .rb span{display:flex;align-items:center;gap:8px;font-size:.72rem;color:var(--paragraph);font-weight:600;}
+.role-desk .rb span i{width:22px;height:22px;border-radius:7px;background:rgba(24,195,214,.12);color:var(--secondary);display:grid;place-items:center;font-size:.62rem;}
+.campus{display:flex;gap:12px;align-items:flex-start;}
+.campus .ci{width:42px;height:42px;border-radius:12px;background:var(--grad-brand);color:#fff;display:grid;place-items:center;flex:none;}
+.receipt{display:flex;gap:10px;align-items:center;}
+.receipt .thumb{width:44px;height:52px;border-radius:8px;background:linear-gradient(180deg,#fff,#e8f4f7);border:1px dashed var(--line);display:grid;place-items:center;color:var(--secondary);font-size:.9rem;flex:none;}
+.pay-models{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.pay-models .pm{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 8px;text-align:center;}
+.pay-models .pm.on{border-color:var(--accent);background:rgba(24,195,214,.08);}
+.pay-models .pm b{display:block;font-size:.82rem;color:var(--heading);}
+.pay-models .pm span{font-size:.68rem;color:var(--muted);}
+.slip{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;}
+.slip .sr{display:flex;justify-content:space-between;padding:6px 0;font-size:.82rem;border-bottom:1px dashed var(--line);}
+.slip .sr:last-child{border:none;font-weight:800;color:var(--primary);}
+.hw-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.hw-meta span{font-size:.7rem;font-weight:700;background:var(--bg);border:1px solid var(--line);padding:4px 8px;border-radius:8px;}
+.qopt{display:flex;align-items:center;gap:10px;padding:9px 12px;border:1.5px solid var(--line);border-radius:12px;background:#fff;margin-top:7px;font-size:.82rem;font-weight:600;color:var(--heading);}
+.qopt.on{border-color:var(--accent);background:rgba(24,195,214,.1);}
+.qopt .k{width:22px;height:22px;border-radius:7px;background:var(--bg);border:1px solid var(--line);display:grid;place-items:center;font-size:.68rem;font-weight:800;flex:none;}
+.qopt.on .k{background:var(--grad-brand);color:#fff;border-color:transparent;}
+.q-dots{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.q-dots i{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--line);background:#fff;display:grid;place-items:center;font-style:normal;font-size:.68rem;font-weight:800;color:var(--heading);}
+.q-dots i.on{background:var(--grad-brand);color:#fff;border-color:transparent;}
+.q-dots i.done{box-shadow:inset 0 -3px 0 var(--accent);}
+.kind-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.kind-row span{padding:6px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:.72rem;font-weight:700;color:var(--muted);}
+.kind-row span.on{background:var(--grad-brand);color:#fff;border-color:transparent;}
+.report-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;}
+.drive-side{width:150px;border-right:1px solid var(--line);background:#fff;padding:12px;flex:none;}
+.drive-ui{display:flex;min-height:320px;}
+.drive-main{flex:1;padding:12px;background:var(--bg);min-width:0;}
+.file-ico{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:#fff;font-size:.62rem;font-weight:800;flex:none;}
+.file-ico.pdf{background:#dc2626;}
+.file-ico.doc{background:#2563eb;}
+.file-ico.ppt{background:#ea580c;}
+.file-ico.fold{background:var(--secondary);}
+.unknown{background:#fff7ed;border:1px dashed #fdba74;border-radius:12px;padding:10px 12px;font-size:.78rem;}
+.unknown b{color:#c2410c;}
+
+.admin-shell{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);}
+
+.admin-shell{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);}
+.admin-mods{display:grid;grid-template-columns:repeat(4,1fr);}
+.admin-mod{padding:16px 16px 18px;border-right:1px solid var(--line);}
+.admin-mod:last-child{border-right:none;}
+.mod-lbl{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--secondary);font-weight:800;margin:10px 0 4px;}
+.mod-lbl:first-child{margin-top:0;}
+
+.cmp-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius);box-shadow:var(--shadow-sm);}
+.tbl{width:100%;min-width:680px;border-collapse:collapse;background:#fff;}
+.tbl th{text-align:left;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 14px;font-weight:700;}
+.tbl th:first-child{background:var(--bg);color:var(--muted);width:18%;}
+.tbl th:nth-child(2){background:#f8fafc;color:var(--muted);width:38%;}
+.tbl th:nth-child(3){background:var(--primary);color:#fff;width:44%;}
+.tbl td{padding:11px 14px;font-size:.88rem;line-height:1.4;border-top:1px solid var(--line);vertical-align:top;}
+.tbl td:first-child{font-weight:700;color:var(--heading);}
+.tbl td:nth-child(2){color:var(--muted);}
+.tbl td:nth-child(3){color:var(--primary);font-weight:600;}
+.tbl tr:nth-child(even) td{background:rgba(245,250,252,.7);}
+
+.cta-sec{padding-block:clamp(48px,7vw,88px);}
+.cta-box{
+  background:radial-gradient(700px 360px at 80% 0%,rgba(24,195,214,.3),transparent 55%),linear-gradient(150deg,var(--primary),var(--dark));
+  border-radius:var(--radius-lg);padding:clamp(32px,5vw,64px);color:#fff;position:relative;overflow:hidden;box-shadow:var(--shadow-lg);
+}
+.cta-box h2{color:#fff;margin:10px 0 12px;}
+.cta-box .lead{color:rgba(255,255,255,.86);}
+.cta-tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 28px;}
+.cta-tags span{border:1px solid rgba(255,255,255,.28);padding:6px 12px;border-radius:999px;font-size:.78rem;font-weight:600;}
+.cta-grid{display:grid;grid-template-columns:1.15fr .9fr .95fr;gap:14px;}
+.cta-panel{border:1px solid rgba(255,255,255,.2);border-radius:18px;padding:18px;background:rgba(255,255,255,.06);}
+.cta-panel label{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin-bottom:2px;}
+.cta-panel a,.cta-panel b{font-size:.95rem;font-weight:600;color:#fff;}
+.cta-demo{display:flex;flex-direction:column;justify-content:center;gap:6px;background:#fff;color:var(--primary);text-decoration:none;padding:18px;border-radius:18px;}
+.cta-demo strong{font-size:1rem;}
+.cta-demo span{font-size:.82rem;color:var(--muted);font-weight:500;}
+.qr{background:#fff;color:var(--heading);padding:16px;border-radius:18px;display:flex;align-items:center;gap:14px;}
+#qrbox{width:76px;height:76px;background:var(--primary);display:grid;grid-template-columns:repeat(7,1fr);gap:1px;padding:6px;border-radius:10px;flex:none;}
+
+.footer{background:#04222b;color:rgba(255,255,255,.62);padding:42px 0 calc(28px + var(--safe-b));}
+.foot-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center;}
+.footer .brand{color:#fff;}
+.footer a:hover{color:var(--accent);}
+
+.bottom-nav{
+  display:none;position:fixed;left:12px;right:12px;bottom:calc(10px + var(--safe-b));z-index:980;
+  background:rgba(255,255,255,.94);backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid var(--line);border-radius:22px;
+  box-shadow:0 18px 40px -16px rgba(0,62,79,.45);
+  padding:8px 6px;grid-template-columns:repeat(5,1fr);
+}
+.bottom-nav a{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-size:.62rem;font-weight:700;color:var(--muted);padding:6px 2px;border-radius:14px;
+}
+.bottom-nav a i{font-size:1.05rem;}
+.bottom-nav a.on,.bottom-nav a:active{color:var(--primary);background:rgba(24,195,214,.12);}
+
+.wa{
+  position:fixed;bottom:calc(102px + var(--safe-b));right:16px;width:54px;height:54px;border-radius:50%;
+  background:#25D366;color:#fff;display:grid;place-items:center;font-size:1.5rem;z-index:900;
+  box-shadow:0 14px 30px -10px rgba(37,211,102,.6);
+}
+.wa:hover{color:#fff;transform:scale(1.06);}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+
+@media(min-width:992px){
+  body{padding-bottom:0;}
+  .bottom-nav{display:none;}
+  .wa{bottom:24px;right:24px;}
+}
+
+@media(max-width:991px){
+  .nav .wrap{justify-content:space-between;}
+  .nav-links,.nav-cta .btn-ig{display:none;}
+  .nav-toggle{display:flex;}
+  .hero-grid,.g2,.inbox-ui,.cta-grid,.admin-mods,.phones,.admin-desk,.admin-kpis,.story,.story.flip,.how-row,.ba-grid,.path-row{grid-template-columns:1fr;}
+  .toc-strip{display:none;}
+  .hero-product,.hero-product .win-body{max-height:380px;}
+  .ba-row{grid-template-columns:1fr;}
+  .ba-row .topic{margin-bottom:4px;}
+  .story.flip .story-copy{order:0;}
+  .pay-models{grid-template-columns:repeat(3,1fr);}
+  .drive-ui{display:block;}
+  .drive-side{width:auto;border-right:none;border-bottom:1px solid var(--line);}
+  .inbox-folders{display:flex;flex-wrap:wrap;gap:6px;border-right:none;border-bottom:1px solid var(--line);}
+  .inbox-compose{width:auto;margin-top:0;}
+  .g3,.g4{grid-template-columns:1fr 1fr;}
+  .path-row{grid-template-columns:1fr 1fr;}
+  .g6{grid-template-columns:repeat(3,1fr);}
+  .hero-actions .btn-ig{flex:1;min-width:0;}
+  .mosaic{grid-template-columns:1fr;}
+  .side-cards{flex-direction:row;}
+  .side-cards .glass-mini{flex:1;}
+  .bottom-nav{display:grid;}
+  .menu-backdrop{
+    display:block;position:fixed;inset:0;z-index:1000;
+    background:rgba(4,34,43,.5);backdrop-filter:blur(2px);
+    opacity:0;visibility:hidden;transition:opacity .35s var(--ease),visibility 0s linear .35s;
+  }
+  .menu-backdrop.show{opacity:1;visibility:visible;transition:opacity .35s var(--ease);}
+  .mobile-menu{
+    display:flex;flex-direction:column;
+    position:fixed;top:0;right:0;height:100dvh;width:min(300px,84vw);
+    background:#fff;z-index:1001;box-shadow:-24px 0 60px -20px rgba(0,62,79,.4);
+    transform:translateX(100%);transition:transform .38s var(--ease);
+    overflow-y:auto;-webkit-overflow-scrolling:touch;
+  }
+  .mobile-menu.open{transform:translateX(0);}
+  .mm-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);}
+  .mm-links{padding:10px 12px;display:flex;flex-direction:column;gap:2px;}
+  .mobile-menu a{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.92rem;padding:11px 10px;border-radius:11px;color:var(--heading);}
+  .mobile-menu a i{width:16px;text-align:center;color:var(--secondary);font-size:.84rem;}
+  .mm-actions{display:flex;flex-direction:column;gap:9px;margin:6px 18px 18px;padding-top:16px;border-top:1px solid var(--line);}
+  .mobile-menu .btn-ig{width:100%;}
+  .mclose{background:none;border:none;font-size:1.2rem;color:var(--primary);width:38px;height:38px;border-radius:10px;}
+}
+
+@media(max-width:700px){
+  .g3,.g4,.g6,.hero-stats{grid-template-columns:1fr 1fr;}
+  .side-cards{flex-direction:column;}
+  .flow-band{flex-direction:column;}
+  .arr{transform:rotate(90deg);}
+  .tbl{min-width:0;}
+  .cmp-wrap{overflow:visible;box-shadow:none;}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%;}
+  .tbl thead{display:none;}
+  .tbl tr{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px 16px;margin-bottom:12px;box-shadow:var(--shadow-sm);}
+  .tbl td{padding:6px 0;border:none;background:transparent!important;}
+  .tbl td:first-child{font-size:1rem;margin-bottom:6px;}
+  .tbl td:nth-child(2)::before{content:"Without IGNITE — ";font-weight:700;color:var(--muted);}
+  .tbl td:nth-child(3)::before{content:"With IGNITE LMS — ";font-weight:700;color:var(--primary);}
+}
+
+@media(max-width:520px){
+  .hero-actions{flex-direction:column;}
+  .hero-actions .btn-ig{width:100%;}
+  .g3,.g4,.admin-mods,.path-row{grid-template-columns:1fr;}
+  .inbox-folders{display:flex;flex-wrap:wrap;gap:6px;border-right:none;border-bottom:1px solid var(--line);}
+  .inbox-list{border-right:none;}
+  .device{max-width:360px;margin-inline:auto;}
+  .hero-stats{grid-template-columns:1fr;max-width:none;}
+  .cta-tags span{font-size:.72rem;}
+  .sec{padding-block:48px;}
+}
+
+@media print{
+  .nav,.toc-strip,.bottom-nav,.wa,.read-progress,.mobile-menu,.menu-backdrop{display:none!important;}
+  body{padding:0;background:#fff;}
+  .sec{break-inside:avoid;}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}
+  .reveal{opacity:1;transform:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="read-progress" id="readProgress"></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="/" class="brand">
+      <span class="mark"><img src="/pwa-icon-192.png" alt="Feature Book" /></span>
+      Feature&nbsp;<b>book</b>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#overview">Features</a>
+      <a href="#walkthrough">How it works</a>
+      <a href="#lectures">Classes</a>
+      <a href="#challans">Fees</a>
+      <a href="#portals">Apps</a>
+      <a href="/Account/UserManual">User manual</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="/" class="btn-ig btn-outline-ig">Home</a>
+      <a href="/Account/Login" class="btn-ig btn-primary-ig">Sign in</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</nav>
+
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <div class="mm-head">
+    <a href="/" class="brand">
+      <span class="mark" style="width:32px;height:32px"><img src="/pwa-icon-192.png" alt="Feature Book" /></span>
+      Feature&nbsp;<b>book</b>
+    </a>
+    <button class="mclose" id="mClose" type="button" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <nav class="mm-links">
+    <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+    <a href="#overview"><i class="fa-solid fa-layer-group"></i> All features</a>
+    <a href="#walkthrough"><i class="fa-solid fa-play"></i> How they work</a>
+    <a href="#lectures"><i class="fa-solid fa-video"></i> Live class</a>
+    <a href="#challans"><i class="fa-solid fa-file-invoice-dollar"></i> Fee bills</a>
+    <a href="#portals"><i class="fa-solid fa-mobile-screen"></i> Apps</a>
+    <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+    <a href="/Account/UserManual"><i class="fa-solid fa-book-open"></i> User manual</a>
+  </nav>
+  <div class="mm-actions">
+    <a href="/" class="btn-ig btn-outline-ig">Back to home</a>
+    <a href="/Account/Login" class="btn-ig btn-primary-ig">Sign in</a>
+  </div>
+</aside>
+
+<header class="hero" id="home">
+  <span class="blob b1"></span><span class="blob b2"></span>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="hero-badge"><span class="dot"></span> For institute owners · no IT needed</span>
+        <h1>See every tool — <span class="text-grad">in plain words</span></h1>
+        <p class="sub">This is the admin home. Below: every feature, then how it works — fees, classes, salary, parents. Tap Join, Approve or Pay to try it.</p>
+        <div class="hero-actions">
+          <a href="#overview" class="btn-ig btn-primary-ig btn-lg-ig"><i class="fa-solid fa-layer-group"></i> See all features</a>
+          <a href="https://youtu.be/51oN2bkIN5c" class="btn-ig btn-outline-ig btn-lg-ig" target="_blank" rel="noopener"><i class="fa-solid fa-play"></i> Watch it working</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hs"><b>40+</b><span>Institutes</span></div>
+          <div class="hs"><b>1,200+</b><span>Students on the system</span></div>
+          <div class="hs"><b>4</b><span>Apps · phone &amp; computer</span></div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="hero-product-wrap">
+          <div class="win shot-frame hero-product">
+            <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Admin home</b><span>lms.ignitesol.net</span></div>
+            <div class="win-body">
+              <div class="ap-ui" aria-hidden="true">
+  <div class="ap-nav">
+    <div class="ap-brand">
+      <img src="/pwa-icon-192.png" alt="" />
+      <b><span>IGNITE</span> LMS</b>
+    </div>
+    <div class="ap-links">
+      <span class="ap-nl">Dashboards <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Institute <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">People <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Online Lectures <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Finance <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Teacher Salary <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Academic <span class="ap-badge">7</span> <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Messages</span>
+    </div>
+    <div class="ap-right">
+      <span class="ap-bell"><i class="fa-regular fa-bell"></i></span>
+      <div class="ap-user">
+        <div class="ap-user-meta">
+          <div class="n">Ignite LMS Demo</div>
+          <span class="ap-pill">Admin</span>
+        </div>
+        <div class="ap-ava">ID<i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ap-toolbar">
+    <div class="ap-crumb">Home &rsaquo; <span>Dashboard</span></div>
+    <div class="ap-clock"><i></i><span class="ap-clock-time">Asia/Karachi</span></div>
+  </div>
+
+  <div class="ap-hero">
+    <span class="ap-hero-glow"></span>
+    <div class="ap-hero-eyebrow"><i class="fa-solid fa-city"></i> Campus Profile</div>
+    <div class="ap-hero-inner">
+      <div class="ap-hero-brand">
+        <div class="ap-logo"><img src="/pwa-icon-192.png" alt="" /></div>
+        <div>
+          <div class="ap-hero-name">LMS Demo</div>
+          <div class="ap-hero-sub">Learning Management System · Admin Portal</div>
+          <span class="ap-role"><i></i>Admin</span>
+        </div>
+      </div>
+      <div class="ap-sep"></div>
+      <div class="ap-stats">
+        <div class="ap-hstat"><b>52</b><small>Students</small><em>30 active</em></div>
+        <div class="ap-hstat"><b>5</b><small>Teachers</small><em>5 active</em></div>
+        <div class="ap-hstat"><b>8</b><small>Batches</small><em>8 running</em></div>
+        <div class="ap-hstat"><b>0</b><small>Today</small><em>lectures scheduled</em></div>
+      </div>
+    </div>
+    <div class="ap-cta">
+      <span class="ap-btn-w"><i class="fa-solid fa-plus"></i> Enrol Student</span>
+      <span class="ap-btn-g"><i class="fa-regular fa-calendar-plus"></i> New Lecture</span>
+      <span class="ap-btn-g"><i class="fa-regular fa-file-lines"></i> Generate Challan</span>
+      <span class="ap-btn-g ml"><i class="fa-solid fa-display"></i> Live Lecture Monitor</span>
+    </div>
+  </div>
+
+  <div class="ap-section">
+    <div class="ap-row">
+      <div class="ap-card">
+        <div class="ap-card-head">
+          <div class="ap-card-title">
+            <span class="ap-ico teal"><i class="fa-solid fa-users"></i></span>
+            <div><small>01 · Student Management</small>Students</div>
+          </div>
+          <span class="ap-link">View All <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div class="ap-card-body">
+          <div class="ap-stat-row">
+            <div>
+              <div class="ap-stat-val">52</div>
+              <div class="ap-stat-lbl">Total Students</div>
+              <div class="ap-chips">
+                <span class="ap-chip on"><i class="fa-solid fa-circle-check"></i> 30 active</span>
+                <span class="ap-chip off">22 inactive</span>
+              </div>
+            </div>
+            <div class="ap-ring">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="ap-ring-bg" cx="32" cy="32" r="27" />
+                <circle class="ap-ring-bar" cx="32" cy="32" r="27" stroke="#005e78" stroke-dasharray="169.6" stroke-dashoffset="71.2" />
+              </svg>
+              <span>58%</span>
+            </div>
+          </div>
+          <div class="ap-split">
+            <div class="ap-split-lbl">Recently Enrolled</div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#005e781e;color:#005e78">AH</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Ali Hussain</div>
+                <div class="ap-list-sub">STU-056</div>
+              </div>
+              <span class="ap-st on">Active</span>
+            </div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#7c3aed1e;color:#7c3aed">RB</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Raza Bilgate</div>
+                <div class="ap-list-sub">STU-055</div>
+              </div>
+              <span class="ap-st off">Inactive</span>
+            </div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#0b7f9c1e;color:#0b7f9c">S</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Steve</div>
+                <div class="ap-list-sub">STU-054</div>
+              </div>
+              <span class="ap-st on">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-card-head">
+          <div class="ap-card-title">
+            <span class="ap-ico violet"><i class="fa-solid fa-chalkboard-user"></i></span>
+            <div><small>02 · Teacher Management</small>Teachers</div>
+          </div>
+          <span class="ap-link">View All <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div class="ap-card-body">
+          <div class="ap-stat-row">
+            <div>
+              <div class="ap-stat-val">5</div>
+              <div class="ap-stat-lbl">Total Teachers</div>
+              <div class="ap-chips">
+                <span class="ap-chip on"><i class="fa-solid fa-circle-check"></i> 5 active</span>
+                <span class="ap-chip off">0 inactive</span>
+              </div>
+            </div>
+            <div class="ap-ring">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="ap-ring-bg" cx="32" cy="32" r="27" />
+                <circle class="ap-ring-bar" cx="32" cy="32" r="27" stroke="#7c3aed" stroke-dasharray="169.6" stroke-dashoffset="0" />
+              </svg>
+              <span>100%</span>
+            </div>
+          </div>
+          <div class="ap-split">
+            <div class="ap-split-lbl">Active vs Inactive</div>
+            <div class="ap-bar"><i style="width:100%"></i></div>
+            <div class="ap-bar-lbl">
+              <span><b style="background:#7c3aed"></b>Active — 5</span>
+              <span><b style="background:#e2e8ea"></b>Inactive — 0</span>
+            </div>
+            <div class="ap-tiles">
+              <div class="ap-tile"><b>5</b><span>On Roster</span></div>
+              <div class="ap-tile"><b>100%</b><span>Active Rate</span></div>
+            </div>
+            <span class="ap-qa violet"><i class="fa-solid fa-plus"></i> Add New Teacher</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+            </div>
+          </div>
+          <a class="hero-watch" href="#dashboard">Full admin screen in the tour <i class="fa-solid fa-arrow-down"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="toc-strip" id="contents">
+  <div class="wrap">
+    <div class="toc-scroll" id="tocScroll">
+      <a class="toc-chip on" href="#overview">All features</a>
+      <a class="toc-chip" href="#roles"><span class="n">01</span> Who logs in</a>
+      <a class="toc-chip" href="#setup"><span class="n">02</span> Setup</a>
+      <a class="toc-chip" href="#dashboard"><span class="n">03</span> Home screen</a>
+      <a class="toc-chip" href="#comms"><span class="n">04</span> Messages</a>
+      <a class="toc-chip" href="#lectures"><span class="n">05</span> Live class</a>
+      <a class="toc-chip" href="#whiteboard"><span class="n">06</span> Board</a>
+      <a class="toc-chip" href="#attendance"><span class="n">07</span> Attendance</a>
+      <a class="toc-chip" href="#academic"><span class="n">08</span> Homework</a>
+      <a class="toc-chip" href="#exams"><span class="n">09</span> Quizzes</a>
+      <a class="toc-chip" href="#documents"><span class="n">10</span> Files</a>
+      <a class="toc-chip" href="#challans"><span class="n">11</span> Fee bills</a>
+      <a class="toc-chip" href="#salary"><span class="n">12</span> Salary</a>
+      <a class="toc-chip" href="#leave"><span class="n">13</span> Leave</a>
+      <a class="toc-chip" href="#portals"><span class="n">14</span> Apps</a>
+      <a class="toc-chip" href="#controls"><span class="n">15</span> Switches</a>
+      <a class="toc-chip" href="#compare">Before / after</a>
+      <a class="toc-chip" href="#contact">Contact</a>
+    </div>
+  </div>
+</div>
+
+<section class="sec" id="overview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">All features</span>
+      <h2 class="h-lg">Everything the institute can do — in one list.</h2>
+      <p class="lead">Tap any card to jump. Or pick Fees, Live class, Parents or the office — you do not have to read every chapter.</p>
+      <div class="who-pills">
+        <span>Coaching centres</span>
+        <span>Academies</span>
+        <span>Online institutes</span>
+        <span>Tuition networks</span>
+        <span>Training centres</span>
+      </div>
+    </div>
+    <div class="how-row reveal">
+      <div class="how"><span class="hn">1</span><b>All features first</b><span>A full list so nothing is hidden in a chapter.</span></div>
+      <div class="how"><span class="hn">2</span><b>Jump to what you care about</b><span>Fees, live class, parents, or running the office.</span></div>
+      <div class="how"><span class="hn">3</span><b>Tap the screen</b><span>Join class, Approve a receipt, or Pay a bill — try it here.</span></div>
+    </div>
+
+    <div class="fmap-cat reveal">People</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#roles">
+        <span class="n">01</span>
+        <span class="fi"><i class="fa-solid fa-users"></i></span>
+        <h3>Who logs in</h3>
+        <p>Five logins: admin, helper (same as sub-admin), teacher, student, parent. Each person only sees their work.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#setup">
+        <span class="n">02</span>
+        <span class="fi"><i class="fa-solid fa-building-columns"></i></span>
+        <h3>Institute setup</h3>
+        <p>Add your campus, classes, batches, subjects and fee plans once. One campus per institute.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#setup">
+        <span class="n">03</span>
+        <span class="fi"><i class="fa-solid fa-user-plus"></i></span>
+        <h3>Students &amp; teachers</h3>
+        <p>Add people one by one or from Excel. Send a WhatsApp login link to the family.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#dashboard">
+        <span class="n">04</span>
+        <span class="fi"><i class="fa-solid fa-chart-pie"></i></span>
+        <h3>Admin dashboard</h3>
+        <p>One home screen: how many students, who is unpaid, what class is live now.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="fmap-cat reveal">Messages &amp; alerts</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#comms">
+        <span class="n">05</span>
+        <span class="fi"><i class="fa-solid fa-envelope"></i></span>
+        <h3>Messages</h3>
+        <p>Chat between admin, teachers, students and parents — with a copy the admin can check.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#controls">
+        <span class="n">06</span>
+        <span class="fi"><i class="fa-solid fa-bell"></i></span>
+        <h3>Alerts</h3>
+        <p>A bell on every screen. You can switch off fee or class alerts if they get noisy.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="fmap-cat reveal">Teaching</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#lectures">
+        <span class="n">07</span>
+        <span class="fi"><i class="fa-solid fa-video"></i></span>
+        <h3>Live classes</h3>
+        <p>Start Zoom (or Meet / Teams) from the LMS. Students tap one button to join.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#lectures">
+        <span class="n">08</span>
+        <span class="fi"><i class="fa-solid fa-calendar-days"></i></span>
+        <h3>Weekly timetable</h3>
+        <p>Set “every Tuesday 4pm” once. The system makes every class and Zoom room for you.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#whiteboard">
+        <span class="n">09</span>
+        <span class="fi"><i class="fa-solid fa-chalkboard"></i></span>
+        <h3>Whiteboard</h3>
+        <p>Draw on a digital board in class. Save it and send as PDF — no phone photos.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#attendance">
+        <span class="n">10</span>
+        <span class="fi"><i class="fa-solid fa-calendar-check"></i></span>
+        <h3>Attendance</h3>
+        <p>When Zoom ends, who came and for how long is already marked on the roll.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="fmap-cat reveal">School work</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#homework">
+        <span class="n">11</span>
+        <span class="fi"><i class="fa-solid fa-file-pen"></i></span>
+        <h3>Homework</h3>
+        <p>Teacher sets work. Student uploads. Parent sees if it is done.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#lessons">
+        <span class="n">12</span>
+        <span class="fi"><i class="fa-solid fa-book-open"></i></span>
+        <h3>Lesson plans</h3>
+        <p>Teacher writes the week’s plan. Admin ticks it before class starts.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#reports">
+        <span class="n">13</span>
+        <span class="fi"><i class="fa-solid fa-clipboard-list"></i></span>
+        <h3>Daily reports</h3>
+        <p>Teacher notes how the student did today. The parent reads it in the app.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#exams">
+        <span class="n">14</span>
+        <span class="fi"><i class="fa-solid fa-clipboard-question"></i></span>
+        <h3>Quizzes &amp; exams</h3>
+        <p>Teacher sends a timed paper. Computer marks MCQs. Parent sees the score.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+    <div class="g4" style="margin-top:14px">
+      <a class="fmap reveal" href="#documents">
+        <span class="n">15</span>
+        <span class="fi"><i class="fa-brands fa-google-drive"></i></span>
+        <h3>Course files</h3>
+        <p>Notes and slides live in your Google Drive. Students open them in the portal.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="fmap-cat reveal">Money</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#challans">
+        <span class="n">16</span>
+        <span class="fi"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+        <h3>Fee challans</h3>
+        <p>Make this month’s fee bills for a whole class in one click. Track who paid.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#challans">
+        <span class="n">17</span>
+        <span class="fi"><i class="fa-solid fa-receipt"></i></span>
+        <h3>Receipt inbox</h3>
+        <p>Parent sends a payment photo. You tap Approve or Reject.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#salary">
+        <span class="n">18</span>
+        <span class="fi"><i class="fa-solid fa-sack-dollar"></i></span>
+        <h3>Teacher salary</h3>
+        <p>Pay per class, per month, or a mix. The slip calculates itself, including advances.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#challans">
+        <span class="n">19</span>
+        <span class="fi"><i class="fa-solid fa-wallet"></i></span>
+        <h3>Parent pay</h3>
+        <p>One parent login for all children. Pay fees in the app. Keep a portal open if you wish.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <div class="fmap-cat reveal">Running the office</div>
+    <div class="g4">
+      <a class="fmap reveal" href="#leave">
+        <span class="n">20</span>
+        <span class="fi"><i class="fa-solid fa-calendar-xmark"></i></span>
+        <h3>Leave</h3>
+        <p>Approve student or teacher leave. If a teacher is off, move or cancel their classes.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#portals">
+        <span class="n">21</span>
+        <span class="fi"><i class="fa-solid fa-mobile-screen"></i></span>
+        <h3>Four apps</h3>
+        <p>Student, teacher, parent and admin — on the phone and on the computer.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#controls">
+        <span class="n">22</span>
+        <span class="fi"><i class="fa-solid fa-user-shield"></i></span>
+        <h3>Helper access</h3>
+        <p>Front-desk staff only see the menus you tick. Hide fees if you want.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+      <a class="fmap reveal" href="#controls">
+        <span class="n">23</span>
+        <span class="fi"><i class="fa-solid fa-sliders"></i></span>
+        <h3>Simple switches</h3>
+        <p>Connect Zoom, Google login, your Drive, and “add to phone” — all from one menu.</p>
+        <span class="go">See it working <i class="fa-solid fa-arrow-right"></i></span>
+      </a>
+    </div>
+
+    <p class="path-head reveal">Start with what you care about</p>
+    <div class="path-row reveal">
+      <a class="path" href="#challans">
+        <span class="fi"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+        <b>Fees</b>
+        <span>Make bills, approve a receipt photo, pay as a parent.</span>
+        <span class="go">Tap Approve &amp; Pay</span>
+      </a>
+      <a class="path" href="#lectures">
+        <span class="fi"><i class="fa-solid fa-video"></i></span>
+        <b>Live class</b>
+        <span>Students tap Join. Zoom opens. Try it on the next screen.</span>
+        <span class="go">Tap Join</span>
+      </a>
+      <a class="path" href="#portals">
+        <span class="fi"><i class="fa-solid fa-children"></i></span>
+        <b>Parents</b>
+        <span>Homework, scores, both children, pay fees — on the phone.</span>
+        <span class="go">See the parent app</span>
+      </a>
+      <a class="path" href="#dashboard">
+        <span class="fi"><i class="fa-solid fa-building-columns"></i></span>
+        <b>Run the office</b>
+        <span>The admin home: students, unpaid fees, live class.</span>
+        <span class="go">See the home screen</span>
+      </a>
+    </div>
+
+    <div class="walk-banner reveal" id="walkthrough">
+      <div>
+        <h3>Or walk through every feature</h3>
+        <p>Plain words, three steps, then a working screen. Skip ahead with a card above if you only need one topic.</p>
+      </div>
+      <a href="#roles" class="btn-ig btn-ghost-ig">Start with who logs in <i class="fa-solid fa-arrow-down"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="roles">
+  <div class="wrap">
+    <div class="story">
+      <div class="story-copy reveal">
+        <span class="eyebrow">01  /  Who logs in</span>
+        <h2 class="h-lg">Five people. Five screens. Nobody sees extra work.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>The admin sees money. The teacher sees classes. The parent sees their child. Same institute — different doors.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>You add a person</b><span>Pick their job: admin, helper (sub-admin), teacher, student or parent.</span></div></li>
+          <li><span class="sn">2</span><div><b>They get their own login</b><span>WhatsApp invite or Google sign-in. They never share one password.</span></div></li>
+          <li><span class="sn">3</span><div><b>Their screen only shows their job</b><span>A helper / sub-admin cannot open fees unless you tick that box.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin</em><em class="admin">Helper / Sub-admin</em><em class="teacher">Teacher</em><em class="student">Student</em><em class="parent">Parent</em></div>
+        <a class="next-feat" href="#setup">Next: set up the institute <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="g2">
+          <div class="role-desk"><div class="rh"><div class="av">AD</div><div><b>Admin</b><div style="font-size:.68rem;opacity:.85">Runs the institute</div></div></div><div class="rb"><span><i class="fa-solid fa-users"></i> Students</span><span><i class="fa-solid fa-file-invoice-dollar"></i> Fees &amp; salary</span></div></div>
+          <div class="role-desk"><div class="rh"><div class="av">SA</div><div><b>Helper / Sub-admin</b><div style="font-size:.68rem;opacity:.85">Same role · only what you allow</div></div></div><div class="rb"><span><i class="fa-solid fa-toggle-on"></i> Tick each menu</span><span><i class="fa-solid fa-eye-slash"></i> Fees can stay hidden</span></div></div>
+          <div class="role-desk"><div class="rh"><div class="av">TR</div><div><b>Teacher</b><div style="font-size:.68rem;opacity:.85">Classes</div></div></div><div class="rb"><span><i class="fa-solid fa-video"></i> Live class</span><span><i class="fa-solid fa-clipboard-question"></i> Homework &amp; quizzes</span></div></div>
+          <div class="role-desk"><div class="rh"><div class="av">ST</div><div><b>Student</b><div style="font-size:.68rem;opacity:.85">Learn</div></div></div><div class="rb"><span><i class="fa-solid fa-circle-play"></i> Join class</span><span><i class="fa-solid fa-receipt"></i> Fees &amp; attendance</span></div></div>
+          <div class="role-desk"><div class="rh"><div class="av">PR</div><div><b>Parent</b><div style="font-size:.68rem;opacity:.85">Watch &amp; pay</div></div></div><div class="rb"><span><i class="fa-solid fa-children"></i> Switch children</span><span><i class="fa-solid fa-wallet"></i> Pay fees</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="setup">
+  <div class="wrap">
+    <div class="story flip">
+      <div class="story-copy reveal">
+        <span class="eyebrow">02  /  Institute &amp; people</span>
+        <h2 class="h-lg">Build the school once. Then just add students.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Add classes, batches and subjects as three separate lists. They join when you enrol a student or add a teacher: pick the batches, then pick subjects for each batch.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Set up your campus</b><span>Then add class names, batch names and subject names on their own. One campus per institute.</span></div></li>
+          <li><span class="sn">2</span><div><b>Attach a fee plan</b><span>Pick the plan when you enrol the student. Discounts sit on the student.</span></div></li>
+          <li><span class="sn">3</span><div><b>Enrol people</b><span>For each student or teacher: select batches, then subjects against each batch. A WhatsApp link can open their app.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin sets this up</em></div>
+        <a class="next-feat" href="#dashboard">Next: the home screen <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Add a student</b><span>Enrolment</span></div>
+          <div class="win-body" style="background:#fff">
+            <div class="g2">
+              <div class="tree">
+                <div class="trow"><i class="fa-solid fa-building"></i><b>Gulberg Campus</b></div>
+                <div class="trow pad"><i class="fa-solid fa-graduation-cap"></i><span>Class · Grade 9 (label)</span></div>
+                <div class="trow pad"><i class="fa-solid fa-users"></i><span>Batches · Morning, Weekend</span></div>
+                <div class="trow pad"><i class="fa-solid fa-book"></i><span>Morning → Physics, Maths</span></div>
+              </div>
+              <div class="enrol-form">
+                <label>Student name</label><div class="box">Ahmad Khan</div>
+                <label>Parent WhatsApp</label><div class="box">+92 300 1234567</div>
+                <label>Batch</label><div class="box">Morning · Physics, Maths</div>
+                <span class="btn-ig btn-primary-ig" style="margin-top:12px;width:100%"><i class="fa-brands fa-whatsapp"></i> Save &amp; send login</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="dashboard">
+  <div class="wrap">
+    <div class="story full">
+      <div class="story-copy reveal" style="max-width:720px">
+        <span class="eyebrow">03  /  Home screen</span>
+        <h2 class="h-lg">Open the computer. See the whole institute.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>How many students, who has not paid, which class is live — on one page. No waiting for a paper report at month-end.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Sign in as admin</b><span>The home screen opens with your campus, students and teachers.</span></div></li>
+          <li><span class="sn">2</span><div><b>Numbers update themselves</b><span>Enrol a student or collect a fee — the counts change.</span></div></li>
+          <li><span class="sn">3</span><div><b>Tap a shortcut</b><span>Enrol, new class, or generate challans without hunting menus.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin sees this first</em></div>
+        <a class="next-feat" href="#comms">Next: messages <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example — live admin screen</span>
+        <div class="win shot-frame">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Admin Portal · Home</b><span>lms.ignitesol.net</span></div>
+          <div class="win-body">
+            <div class="ap-ui" aria-hidden="true">
+  <div class="ap-nav">
+    <div class="ap-brand">
+      <img src="/pwa-icon-192.png" alt="" />
+      <b><span>IGNITE</span> LMS</b>
+    </div>
+    <div class="ap-links">
+      <span class="ap-nl">Dashboards <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Institute <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">People <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Online Lectures <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Finance <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Teacher Salary <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Academic <span class="ap-badge">7</span> <svg class="caret" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 4l4 4 4-4"/></svg></span>
+      <span class="ap-nl">Messages</span>
+    </div>
+    <div class="ap-right">
+      <span class="ap-bell"><i class="fa-regular fa-bell"></i></span>
+      <div class="ap-user">
+        <div class="ap-user-meta">
+          <div class="n">Ignite LMS Demo</div>
+          <span class="ap-pill">Admin</span>
+        </div>
+        <div class="ap-ava">ID<i></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ap-toolbar">
+    <div class="ap-crumb">Home &rsaquo; <span>Dashboard</span></div>
+    <div class="ap-clock"><i></i><span class="ap-clock-time">Asia/Karachi</span></div>
+  </div>
+
+  <div class="ap-hero">
+    <span class="ap-hero-glow"></span>
+    <div class="ap-hero-eyebrow"><i class="fa-solid fa-city"></i> Campus Profile</div>
+    <div class="ap-hero-inner">
+      <div class="ap-hero-brand">
+        <div class="ap-logo"><img src="/pwa-icon-192.png" alt="" /></div>
+        <div>
+          <div class="ap-hero-name">LMS Demo</div>
+          <div class="ap-hero-sub">Learning Management System · Admin Portal</div>
+          <span class="ap-role"><i></i>Admin</span>
+        </div>
+      </div>
+      <div class="ap-sep"></div>
+      <div class="ap-stats">
+        <div class="ap-hstat"><b>52</b><small>Students</small><em>30 active</em></div>
+        <div class="ap-hstat"><b>5</b><small>Teachers</small><em>5 active</em></div>
+        <div class="ap-hstat"><b>8</b><small>Batches</small><em>8 running</em></div>
+        <div class="ap-hstat"><b>0</b><small>Today</small><em>lectures scheduled</em></div>
+      </div>
+    </div>
+    <div class="ap-cta">
+      <span class="ap-btn-w"><i class="fa-solid fa-plus"></i> Enrol Student</span>
+      <span class="ap-btn-g"><i class="fa-regular fa-calendar-plus"></i> New Lecture</span>
+      <span class="ap-btn-g"><i class="fa-regular fa-file-lines"></i> Generate Challan</span>
+      <span class="ap-btn-g ml"><i class="fa-solid fa-display"></i> Live Lecture Monitor</span>
+    </div>
+  </div>
+
+  <div class="ap-section">
+    <div class="ap-row">
+      <div class="ap-card">
+        <div class="ap-card-head">
+          <div class="ap-card-title">
+            <span class="ap-ico teal"><i class="fa-solid fa-users"></i></span>
+            <div><small>01 · Student Management</small>Students</div>
+          </div>
+          <span class="ap-link">View All <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div class="ap-card-body">
+          <div class="ap-stat-row">
+            <div>
+              <div class="ap-stat-val">52</div>
+              <div class="ap-stat-lbl">Total Students</div>
+              <div class="ap-chips">
+                <span class="ap-chip on"><i class="fa-solid fa-circle-check"></i> 30 active</span>
+                <span class="ap-chip off">22 inactive</span>
+              </div>
+            </div>
+            <div class="ap-ring">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="ap-ring-bg" cx="32" cy="32" r="27" />
+                <circle class="ap-ring-bar" cx="32" cy="32" r="27" stroke="#005e78" stroke-dasharray="169.6" stroke-dashoffset="71.2" />
+              </svg>
+              <span>58%</span>
+            </div>
+          </div>
+          <div class="ap-split">
+            <div class="ap-split-lbl">Recently Enrolled</div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#005e781e;color:#005e78">AH</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Ali Hussain</div>
+                <div class="ap-list-sub">STU-056</div>
+              </div>
+              <span class="ap-st on">Active</span>
+            </div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#7c3aed1e;color:#7c3aed">RB</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Raza Bilgate</div>
+                <div class="ap-list-sub">STU-055</div>
+              </div>
+              <span class="ap-st off">Inactive</span>
+            </div>
+            <div class="ap-list-row">
+              <span class="ap-av" style="background:#0b7f9c1e;color:#0b7f9c">S</span>
+              <div style="flex:1;min-width:0">
+                <div class="ap-list-name">Steve</div>
+                <div class="ap-list-sub">STU-054</div>
+              </div>
+              <span class="ap-st on">Active</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ap-card">
+        <div class="ap-card-head">
+          <div class="ap-card-title">
+            <span class="ap-ico violet"><i class="fa-solid fa-chalkboard-user"></i></span>
+            <div><small>02 · Teacher Management</small>Teachers</div>
+          </div>
+          <span class="ap-link">View All <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+        <div class="ap-card-body">
+          <div class="ap-stat-row">
+            <div>
+              <div class="ap-stat-val">5</div>
+              <div class="ap-stat-lbl">Total Teachers</div>
+              <div class="ap-chips">
+                <span class="ap-chip on"><i class="fa-solid fa-circle-check"></i> 5 active</span>
+                <span class="ap-chip off">0 inactive</span>
+              </div>
+            </div>
+            <div class="ap-ring">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <circle class="ap-ring-bg" cx="32" cy="32" r="27" />
+                <circle class="ap-ring-bar" cx="32" cy="32" r="27" stroke="#7c3aed" stroke-dasharray="169.6" stroke-dashoffset="0" />
+              </svg>
+              <span>100%</span>
+            </div>
+          </div>
+          <div class="ap-split">
+            <div class="ap-split-lbl">Active vs Inactive</div>
+            <div class="ap-bar"><i style="width:100%"></i></div>
+            <div class="ap-bar-lbl">
+              <span><b style="background:#7c3aed"></b>Active — 5</span>
+              <span><b style="background:#e2e8ea"></b>Inactive — 0</span>
+            </div>
+            <div class="ap-tiles">
+              <div class="ap-tile"><b>5</b><span>On Roster</span></div>
+              <div class="ap-tile"><b>100%</b><span>Active Rate</span></div>
+            </div>
+            <span class="ap-qa violet"><i class="fa-solid fa-plus"></i> Add New Teacher</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="comms">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:22px">
+      <span class="eyebrow">04  /  Messages</span>
+      <h2 class="h-lg">Stop using random WhatsApp groups.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Everyone messages inside the LMS. You can tell a whole class at once. You can also open any chat if you need to check it.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>Open Inbox</b><span>Student, teacher or parent threads sit in one mailbox.</span></div></li>
+        <li><span class="sn">2</span><div><b>Reply or send a file</b><span>PDFs and notes stay in the chat. You see when it was read.</span></div></li>
+          <li><span class="sn">3</span><div><b>Tell everyone, or check a chat</b><span>Holiday to all parents. You can open any conversation if you need to.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="admin">Admin</em><em class="teacher">Teacher</em><em class="student">Student</em><em class="parent">Parent</em></div>
+    </div>
+    <span class="work-kicker reveal">Working example — the real mailbox</span>
+    <div class="inbox-ui reveal">
+      <div class="inbox-folders">
+        <div class="if-title">Mailbox</div>
+        <div class="ifolder on"><i class="fa-solid fa-inbox"></i> Inbox <span class="badge">4</span></div>
+        <div class="ifolder"><i class="fa-solid fa-paper-plane"></i> Sent</div>
+        <div class="ifolder"><i class="fa-solid fa-star"></i> Starred</div>
+        <div class="ifolder"><i class="fa-solid fa-file-lines"></i> Drafts</div>
+        <div class="ifolder"><i class="fa-solid fa-bullhorn"></i> Broadcast</div>
+        <div class="ifolder"><i class="fa-solid fa-shield-halved"></i> Monitor</div>
+        <span class="btn-ig btn-primary-ig inbox-compose"><i class="fa-solid fa-pen"></i> Compose</span>
+      </div>
+      <div class="inbox-list">
+        <div class="inbox-search"><i class="fa-solid fa-magnifying-glass"></i> Search messages</div>
+        <div class="ithread on unread">
+          <div class="av">AK</div>
+          <div class="meta">
+            <div class="who"><b>Ahmad Khan</b><time>9:14 AM</time></div>
+            <div class="subj">Assignment submission</div>
+            <div class="prev">Sir, can you please check my assignment?</div>
+            <span class="role-chip stu">Student</span>
+          </div>
+        </div>
+        <div class="ithread">
+          <div class="av t">ST</div>
+          <div class="meta">
+            <div class="who"><b>Sara Teacher</b><time>Yesterday</time></div>
+            <div class="subj">Lecture notes shared</div>
+            <div class="prev">Physics Ch 7 notes uploaded to Drive</div>
+            <span class="role-chip tea">Teacher</span>
+          </div>
+        </div>
+        <div class="ithread unread">
+          <div class="av p">PR</div>
+          <div class="meta">
+            <div class="who"><b>Raza Family</b><time>Mon</time></div>
+            <div class="subj">Fee receipt uploaded</div>
+            <div class="prev">Easypaisa receipt attached · PKR 8,000</div>
+            <span class="role-chip par">Parent</span>
+          </div>
+        </div>
+        <div class="ithread">
+          <div class="av b">ALL</div>
+          <div class="meta">
+            <div class="who"><b>Institute broadcast</b><time>Sun</time></div>
+            <div class="subj">Holiday announcement</div>
+            <div class="prev">Campus closed Friday 15 Aug for Independence Day</div>
+            <span class="role-chip adm">Broadcast</span>
+          </div>
+        </div>
+      </div>
+      <div class="inbox-chat">
+        <div class="chat-head">
+          <div class="av">AK</div>
+          <div style="flex:1;min-width:0">
+            <div class="name">Ahmad Khan</div>
+            <div class="sub">Student · Mathematics Batch A · Last seen 2m ago</div>
+          </div>
+          <span class="role-chip stu">Student</span>
+        </div>
+        <div class="chat-body">
+          <div class="bubble">
+            <div class="bh"><b>Ahmad Khan</b><time>9:08 AM</time></div>
+            Sir, can you please check my assignment? I uploaded the working sheets.
+            <div class="file"><i class="fa-solid fa-file-pdf"></i> physics_ch4.pdf · 2.4 MB</div>
+          </div>
+          <div class="bubble me">
+            <div class="bh"><b>You</b><time>9:14 AM</time></div>
+            Yes Ahmad — I will review it shortly. Please keep the pages in order.
+            <span class="seen"><i class="fa-solid fa-check-double"></i> Read 9:15 AM</span>
+          </div>
+        </div>
+        <div class="chat-compose">
+          <i class="fa-solid fa-paperclip" style="color:var(--muted)"></i>
+          <div class="box">Write a reply…</div>
+          <span class="chat-send"><i class="fa-solid fa-paper-plane"></i></span>
+        </div>
+      </div>
+    </div>
+    <a class="next-feat reveal" href="#lectures">Next: live classes <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec alt" id="lectures">
+  <div class="wrap">
+    <div class="story">
+      <div class="story-copy reveal">
+        <span class="eyebrow">05  /  Live classes</span>
+        <h2 class="h-lg">Students tap Join. Zoom opens. That’s it.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>You connect your Zoom once. The LMS makes a private room for each class. Students never hunt for a meeting link.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Set the timetable</b><span>Once a week, or “every Tuesday 4pm”. Rooms are created for you.</span></div></li>
+          <li><span class="sn">2</span><div><b>Teacher starts the class</b><span>Countdown, then Start. Meet or Teams work the same way.</span></div></li>
+          <li><span class="sn">3</span><div><b>Student taps Join</b><span>The button appears at the right time in their local clock.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin schedules</em><em class="teacher">Teacher starts</em><em class="student">Student joins</em></div>
+        <a class="next-feat" href="#whiteboard">Next: the board <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example — tap Join</span>
+        <div class="lec-widget" id="demoJoin" style="margin-bottom:12px">
+          <div class="lw-top">
+            <span class="lec-status" data-join-status><span class="dot"></span> Starting soon</span>
+            <span style="color:var(--muted);font-size:.8rem">Zoom room ready</span>
+          </div>
+          <div class="lec-body">
+            <div class="lec-subj">
+              <span class="ic"><i class="fa-solid fa-atom"></i></span>
+              <div>
+                <div class="ftt">Physics · Chapter 7</div>
+                <div class="fts">Sir Ahmed Hussain</div>
+              </div>
+            </div>
+            <div class="lec-stage">
+              <div class="count" data-join-count>00 : 00 : 18</div>
+              <small data-join-note>Tap Join to try it — countdown is a demo</small>
+            </div>
+          </div>
+          <div class="lec-foot">
+            <button type="button" class="btn-ig btn-primary-ig" data-join-btn>Try it — Join lecture <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+        </div>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>This week</b><span>Repeats every week</span></div>
+          <div class="win-body">
+            <div class="week">
+              <div class="d"><b>Mon</b><span>4</span><small>Physics</small></div>
+              <div class="d on"><b>Tue</b><span>5</span><small>Live 4pm</small></div>
+              <div class="d"><b>Wed</b><span>6</span><small>Maths</small></div>
+              <div class="d"><b>Thu</b><span>7</span><small>English</small></div>
+              <div class="d"><b>Fri</b><span>8</span><small>Lab</small></div>
+              <div class="d"><b>Sat</b><span>9</span><small>—</small></div>
+              <div class="d"><b>Sun</b><span>10</span><small>—</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="ask-wa reveal" href="https://wa.me/923024884029?text=Hello%2C%20I%20want%20to%20see%20live%20classes%20on%20IGNITE%20LMS.">
+      <div><b>Want this for your institute?</b><span>Ask on WhatsApp — we can show live class on a call.</span></div>
+      <span class="btn-ig"><i class="fa-brands fa-whatsapp"></i> Ask about live class</span>
+    </a>
+  </div>
+</section>
+
+<section class="sec" id="whiteboard">
+  <div class="wrap">
+    <div class="story flip">
+      <div class="story-copy reveal">
+        <span class="eyebrow">06  /  Whiteboard</span>
+        <h2 class="h-lg">Write on a board that students keep after class.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Teacher draws during the lecture. Save. Share with the class. Export PDF. No more photos of a dusty blackboard.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Open the board in class</b><span>Pen, eraser, shapes, text, equations.</span></div></li>
+          <li><span class="sn">2</span><div><b>Teach as usual</b><span>The board is part of the live class.</span></div></li>
+          <li><span class="sn">3</span><div><b>Save and send</b><span>The batch can open it later, or download as PDF.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="teacher">Teacher draws</em><em class="student">Student keeps it</em></div>
+        <a class="next-feat" href="#attendance">Next: attendance <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Whiteboard · Physics Batch A</b><span>Save · Share · PDF</span></div>
+          <div class="toolstrip">
+            <em class="on"><i class="fa-solid fa-pen"></i></em>
+            <em><i class="fa-solid fa-eraser"></i></em>
+            <em><i class="fa-solid fa-square"></i></em>
+            <em><i class="fa-solid fa-font"></i></em>
+            <em><i class="fa-solid fa-square-root-variable"></i></em>
+            <em><i class="fa-solid fa-image"></i></em>
+          </div>
+          <div class="mock-body">
+            <div class="wb-canvas" style="background-image:linear-gradient(#e8f1f4 1px,transparent 1px),linear-gradient(90deg,#e8f1f4 1px,transparent 1px);background-size:22px 22px;">
+              <div style="font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--secondary)">Quadratic formula</div>
+              <div class="eq">x = (−b ± √(b² − 4ac)) / 2a</div>
+              <div style="font-size:.82rem;color:var(--muted)">This board can be saved and sent as PDF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="attendance">
+  <div class="wrap">
+    <div class="story">
+      <div class="story-copy reveal">
+        <span class="eyebrow">07  /  Attendance</span>
+        <h2 class="h-lg">Class ends. The roll is already filled.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Zoom tells us who joined and for how long. If a name does not match, the teacher taps Match. No paper register.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Students join the Zoom</b><span>Time in the room is recorded.</span></div></li>
+          <li><span class="sn">2</span><div><b>Names land on the roll</b><span>Present, late, partial or absent.</span></div></li>
+          <li><span class="sn">3</span><div><b>Fix unknown names</b><span>“Ali.H” waits until you match it to a student.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="teacher">Teacher checks</em><em class="admin">Admin history</em><em class="parent">Parent sees %</em></div>
+        <a class="next-feat" href="#academic">Next: homework &amp; reports <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Attendance · Math A</b><span>From Zoom</span></div>
+          <div class="win-body" style="background:#fff">
+            <table class="att">
+              <thead><tr><th>Student</th><th>Time</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><div class="row" style="padding:0;border:0"><div class="av">OS</div><b>Oliver Smith</b></div></td><td>58m</td><td><span class="st">Present</span></td></tr>
+                <tr><td><div class="row" style="padding:0;border:0"><div class="av">CB</div><b>Charlotte Brown</b></div></td><td>31m</td><td><span class="st part">Partial</span></td></tr>
+                <tr><td><div class="row" style="padding:0;border:0"><div class="av">JT</div><b>James Taylor</b></div></td><td>12m</td><td><span class="st late">Late</span></td></tr>
+                <tr><td><div class="row" style="padding:0;border:0"><div class="av">EJ</div><b>Emily Johnson</b></div></td><td>0m</td><td><span class="st off">Absent</span></td></tr>
+              </tbody>
+            </table>
+            <div class="unknown" style="margin-top:12px">
+              <b>Unknown Zoom name:</b> “Ali.H” — tap Match to the right student.
+              <div class="act" style="margin-top:8px"><b>Match</b><em>Ignore</em></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="academic">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:24px">
+      <span class="eyebrow">08  /  Homework, plans, daily notes</span>
+      <h2 class="h-lg">School work that parents can actually see.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Teacher sets homework. Student uploads. Teacher writes a daily note. Parent opens the app and sees all three — no diary, no missed WhatsApp.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>Homework</b><span>Teacher assigns pages. Student uploads a PDF. You see who is pending.</span></div></li>
+        <li><span class="sn">2</span><div><b>Lesson plan</b><span>Teacher maps the week. Admin ticks Approve before class.</span></div></li>
+        <li><span class="sn">3</span><div><b>Daily report</b><span>A short note and a score. It appears on the parent phone.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="teacher">Teacher writes</em><em class="admin">Admin approves</em><em class="student">Student submits</em><em class="parent">Parent reads</em></div>
+    </div>
+    <div class="g2 reveal" style="align-items:stretch">
+      <div class="work-block" id="homework">
+        <span class="work-kicker">Homework — teacher screen</span>
+        <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <b>Homework · Physics Batch B</b>
+          <span>Due in 24 hours</span>
+        </div>
+        <div class="win-body" style="background:#fff">
+          <h3 style="margin-bottom:6px">Chapter 4 exercises</h3>
+          <p>Solve pages 112–115. Upload working sheets as a single PDF.</p>
+          <div class="hw-meta">
+            <span><i class="fa-solid fa-paperclip"></i> physics_ch4.pdf</span>
+            <span><i class="fa-solid fa-users"></i> 24 students</span>
+            <span><i class="fa-solid fa-check"></i> 18 submitted</span>
+          </div>
+          <div class="row" style="margin-top:8px">
+            <div class="av">AK</div><div style="flex:1"><b>Ahmad Khan</b><small>Uploaded 9:08 AM</small></div><span class="st">Submitted</span>
+          </div>
+          <div class="row">
+            <div class="av">OS</div><div style="flex:1"><b>Oliver Smith</b><small>Not yet uploaded</small></div><span class="st off">Pending</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="work-block" id="lessons">
+          <span class="work-kicker">Lesson plan — waiting for your tick</span>
+          <div class="win">
+          <div class="win-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <b>Lesson planner · Week 4</b>
+            <span>Admin approval</span>
+          </div>
+          <div class="win-body" style="background:#fff">
+            <div class="week" style="margin-bottom:10px">
+              <div class="d"><b>Mon</b><span>L7</span><small>Done</small></div>
+              <div class="d"><b>Wed</b><span>L8</span><small>Done</small></div>
+              <div class="d on"><b>Fri</b><span>Lab</span><small>Waiting</small></div>
+              <div class="d"><b>Sat</b><span>—</span><small></small></div>
+            </div>
+            <div class="row" style="padding-top:4px">
+              <div style="flex:1"><b>Chapter 8 · Projectile motion</b><small>Sara Teacher · Friday lab</small></div>
+              <span class="act"><b>Approve</b><em>Changes</em></span>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div class="work-block" id="reports">
+          <span class="work-kicker">Daily report — parent sees this</span>
+          <div class="report-card">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+            <div><h3>Daily report · Arya Wick</h3><p style="margin:0">Grade 9 Physics · Active and collaborative. Sent to the parent phone.</p></div>
+            <div style="text-align:right"><div class="stars">★★★★★</div><b style="color:var(--primary)">9.2 / 10</b></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="next-feat reveal" href="#exams">Next: quizzes &amp; exams <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec alt" id="exams">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:22px">
+      <span class="eyebrow">09  /  Quizzes &amp; exams</span>
+      <h2 class="h-lg">A practice quiz today. A real exam when it counts.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Teacher writes questions once. Sends a timed paper. Tick-box answers mark themselves. Parent sees the score — no phone call.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>Save questions</b><span>Multiple choice, true/false, or write-the-answer. Reuse later.</span></div></li>
+        <li><span class="sn">2</span><div><b>Send to the class</b><span>Set a window, a timer, a pass mark. Exam mode can warn if they leave the page.</span></div></li>
+        <li><span class="sn">3</span><div><b>Marks come back</b><span>Computer marks ticks. Teacher marks written answers. Score on the parent app.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="teacher">Teacher sends</em><em class="student">Student sits</em><em class="parent">Parent sees score</em><em class="admin">Admin reviews</em></div>
+    </div>
+    <span class="work-kicker reveal">Working example — student paper &amp; teacher marks</span>
+    <div class="g2 reveal" style="align-items:stretch">
+      <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <b>Physics · Chapter 4 quiz</b>
+          <span>Time left 12:48</span>
+        </div>
+        <div class="win-body" style="background:#fff">
+          <div class="kind-row">
+            <span class="on">Quiz</span>
+            <span>Exam</span>
+            <span>Q3 of 12 · 2 marks</span>
+          </div>
+          <h3 style="margin-bottom:8px">The quadratic formula is used to find the roots of which equation?</h3>
+          <div class="qopt"><span class="k">A</span> Linear equations</div>
+          <div class="qopt on"><span class="k">B</span> ax² + bx + c = 0</div>
+          <div class="qopt"><span class="k">C</span> Cubic equations only</div>
+          <div class="qopt"><span class="k">D</span> Exponential growth</div>
+          <div class="q-dots">
+            <i class="done">1</i><i class="done">2</i><i class="on">3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i>
+          </div>
+        </div>
+      </div>
+      <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <b>Teacher · Physics Batch A</b>
+          <span>18 of 24 submitted</span>
+        </div>
+        <div class="win-body" style="background:#fff">
+          <div class="hw-meta" style="margin-top:0;margin-bottom:10px">
+            <span><i class="fa-solid fa-layer-group"></i> Saved questions</span>
+            <span><i class="fa-solid fa-shuffle"></i> Different order</span>
+            <span><i class="fa-solid fa-shield-halved"></i> Warn if they leave</span>
+          </div>
+          <div class="row">
+            <div class="av">AK</div>
+            <div style="flex:1"><b>Ahmad Khan</b><small>Auto-marked · 18 / 20</small></div>
+            <span class="st">Passed</span>
+          </div>
+          <div class="row">
+            <div class="av">CB</div>
+            <div style="flex:1"><b>Charlotte Brown</b><small>Written answers waiting</small></div>
+            <span class="st part">To mark</span>
+          </div>
+          <div class="row">
+            <div class="av">OS</div>
+            <div style="flex:1"><b>Oliver Smith</b><small>Time ran out · submitted</small></div>
+            <span class="st">16 / 20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="next-feat reveal" href="#documents">Next: course files <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec" id="documents">
+  <div class="wrap">
+    <div class="story flip">
+      <div class="story-copy reveal">
+        <span class="eyebrow">10  /  Course files</span>
+        <h2 class="h-lg">Notes stay in your Google Drive — not on our computers.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Admin makes folders. Teacher adds PDFs. Student opens them in the portal. You can lock download if you only want preview.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Connect the institute Drive</b><span>Files never leave your Google account.</span></div></li>
+          <li><span class="sn">2</span><div><b>Teachers drop files in a batch folder</b><span>Notes, slides, worksheets.</span></div></li>
+          <li><span class="sn">3</span><div><b>Students open them</b><span>Preview always. Download only if you allow it.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin organises</em><em class="teacher">Teacher uploads</em><em class="student">Student reads</em></div>
+        <a class="next-feat" href="#challans">Next: fee challans <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Course Documents</b><span>Drive · 68% used</span></div>
+          <div class="drive-ui">
+            <div class="drive-side">
+              <div class="if-title" style="padding:0 0 8px">Folders</div>
+              <div class="ifolder on"><i class="fa-solid fa-folder"></i> Physics</div>
+              <div class="ifolder"><i class="fa-solid fa-folder"></i> Chemistry</div>
+              <div class="ifolder"><i class="fa-solid fa-folder"></i> Batch A</div>
+              <div style="margin-top:14px;font-size:.72rem;color:var(--muted);font-weight:700">Storage</div>
+              <div class="quota"><i></i></div>
+            </div>
+            <div class="drive-main">
+              <div class="row"><span class="file-ico fold">DIR</span><div style="flex:1"><b>Lecture notes</b><small>12 files</small></div><span class="pill">Open</span></div>
+              <div class="row"><span class="file-ico pdf">PDF</span><div style="flex:1"><b>Quadratic Formula.pdf</b><small>Download allowed</small></div><span class="pill">Open</span></div>
+              <div class="row"><span class="file-ico ppt">PPT</span><div style="flex:1"><b>Chapter 4 Slides.pptx</b><small>View only</small></div><span class="pill">Locked</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="challans">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:22px">
+      <span class="eyebrow">11  /  Fee challans</span>
+      <h2 class="h-lg">This month’s fee bills — for the whole class — in one click.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>You create the bills. Parents pay in the app or send a receipt photo. You tap Approve. You can still leave a student’s portal open if fees are late.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>Generate challans</b><span>Pick the class and month. Every student gets a bill.</span></div></li>
+        <li><span class="sn">2</span><div><b>Parent pays</b><span>In the parent app, or they upload Easypaisa / bank proof.</span></div></li>
+        <li><span class="sn">3</span><div><b>You approve</b><span>Receipt inbox: Approve or Reject. Unpaid families get a reminder you already wrote.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="admin">Admin creates</em><em class="parent">Parent pays</em><em class="student">Student sees status</em></div>
+    </div>
+    <span class="work-kicker reveal">Working example — make bills, approve receipts, parent pays</span>
+    <div class="g3" style="margin-bottom:18px">
+      <div class="stat reveal"><b>4.2M</b><span>Collected</span><em>PKR this month</em></div>
+      <div class="stat reveal"><b>142K</b><span>Still unpaid</span><em>28 families</em></div>
+      <div class="stat reveal"><b>28K</b><span>Discounts</span><em>On the student’s plan</em></div>
+    </div>
+    <div class="g3" style="margin-bottom:18px;align-items:stretch">
+      <div class="work-block reveal" id="demoGenerate">
+        <span class="work-kicker">1 · Create this month’s bills</span>
+        <div class="win">
+          <div class="win-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <b>Generate challans</b>
+            <span>August 2026</span>
+          </div>
+          <div class="win-body" style="background:#fff">
+            <div class="enrol-form" style="padding:0;border:0">
+              <label>Class</label><div class="box">Grade 9 · Batch A</div>
+              <label>Fee plan</label><div class="box">PKR 8,000 / month</div>
+              <label>Students</label><div class="box" data-gen-students>24 bills will be created</div>
+              <button type="button" class="btn-ig btn-primary-ig" data-gen-btn style="margin-top:12px;width:100%"><i class="fa-solid fa-file-invoice-dollar"></i> Create 24 fee bills</button>
+              <small class="tap-hint">Tap to try it</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="work-block reveal">
+        <span class="work-kicker">2 · Receipt inbox</span>
+        <div class="win" id="demoReceipts">
+          <div class="win-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <b>Receipt inbox</b>
+            <span data-wait>2 waiting</span>
+          </div>
+          <div class="win-body" style="background:#fff">
+            <div class="row" data-open>
+              <div class="receipt"><span class="thumb"><i class="fa-solid fa-image"></i></span></div>
+              <div style="flex:1"><b>Easypaisa photo</b><small>Ali Hassan · PKR 5,500 · today</small></div>
+              <span class="act">
+                <button type="button" class="ok" data-verdict="approve">Approve</button>
+                <button type="button" class="no" data-verdict="reject">Reject</button>
+              </span>
+            </div>
+            <div class="row" data-open>
+              <div class="receipt"><span class="thumb"><i class="fa-solid fa-file-lines"></i></span></div>
+              <div style="flex:1"><b>Bank transfer</b><small>Raza Family · PKR 8,000</small></div>
+              <span class="act">
+                <button type="button" class="ok" data-verdict="approve">Approve</button>
+                <button type="button" class="no" data-verdict="reject">Reject</button>
+              </span>
+            </div>
+            <div class="flow" style="margin-top:12px"><span>Photo</span><em>→</em><span>You check</span><em>→</em><span>Approve</span></div>
+            <small class="tap-hint">Tap Approve or Reject</small>
+          </div>
+        </div>
+      </div>
+      <div class="work-block reveal">
+        <span class="work-kicker">3 · Parent pays</span>
+        <div class="win" id="demoPay">
+          <div class="win-bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <b>Parent app · Arya · Grade 9</b>
+            <span>Pay fees</span>
+          </div>
+          <div class="win-body" style="background:#fff">
+            <div class="slip">
+              <div class="sr"><span>August fee</span><span>PKR 8,000</span></div>
+              <div class="sr"><span>Due date</span><span>10 Aug 2026</span></div>
+              <div class="sr"><span>Status</span><span data-pay-status>Unpaid</span></div>
+            </div>
+            <button type="button" class="btn-ig btn-primary-ig" data-pay-btn style="margin-top:12px;width:100%"><i class="fa-solid fa-wallet"></i> Try it — Pay now</button>
+            <p class="fts" data-pay-hint style="text-align:center;margin-top:8px">or send an Easypaisa / bank photo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="ask-wa reveal" href="https://wa.me/923024884029?text=Hello%2C%20I%20want%20to%20see%20fee%20challans%20on%20IGNITE%20LMS.">
+      <div><b>This is usually the first thing owners ask about.</b><span>WhatsApp us — we can walk through fee bills on a call.</span></div>
+      <span class="btn-ig"><i class="fa-brands fa-whatsapp"></i> Ask about fees</span>
+    </a>
+    <a class="next-feat reveal" href="#salary">Next: teacher salary <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec" id="salary">
+  <div class="wrap">
+    <div class="story">
+      <div class="story-copy reveal">
+        <span class="eyebrow">12  /  Teacher salary</span>
+        <h2 class="h-lg">Pay teachers the way you already agreed — the slip writes itself.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Per class, monthly, per student, hourly, a share of fees, or a mix. An advance comes off the next slip automatically.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Pick a pay model</b><span>Assign it to the teacher once.</span></div></li>
+          <li><span class="sn">2</span><div><b>Classes happen</b><span>The LMS already knows how many lectures they taught.</span></div></li>
+          <li><span class="sn">3</span><div><b>Open this month’s pay</b><span>The amount is ready. Mark paid. Keep a history.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin runs payroll</em><em class="teacher">Teacher sees “My salary”</em></div>
+        <a class="next-feat" href="#leave">Next: leave <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Payroll · Sara Ahmed</b><span>August 2026</span></div>
+          <div class="win-body">
+            <div class="pay-models" style="margin-bottom:12px">
+              <div class="pm"><b>Fixed</b><span>Monthly</span></div>
+              <div class="pm on"><b>Per lecture</b><span>Sessions</span></div>
+              <div class="pm"><b>Student</b><span>Enrolment</span></div>
+              <div class="pm"><b>Hourly</b><span>Hours</span></div>
+              <div class="pm"><b>%</b><span>Fee share</span></div>
+              <div class="pm"><b>Hybrid</b><span>Combine</span></div>
+            </div>
+            <div class="slip">
+              <div class="sr"><span>18 lectures × PKR 4,500</span><span>81,000</span></div>
+              <div class="sr"><span>Advance already paid</span><span>−10,000</span></div>
+              <div class="sr"><span>Net payable</span><span>PKR 71,000</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="leave">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:22px">
+      <span class="eyebrow">13  /  Leave</span>
+      <h2 class="h-lg">If a teacher is off, their classes are not left hanging.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Student or teacher applies. You approve. If a teacher is away, every clashing class is listed so you can move it, give it to someone else, or cancel it.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>They apply</b><span>Dates and a short reason. You see how many days they have left.</span></div></li>
+        <li><span class="sn">2</span><div><b>You approve or reject</b><span>One tap.</span></div></li>
+        <li><span class="sn">3</span><div><b>Fix the classes</b><span>Reschedule, reassign (salary follows the new teacher), or cancel.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="admin">Admin approves</em><em class="teacher">Teacher applies</em><em class="student">Student applies</em></div>
+    </div>
+    <span class="work-kicker reveal">Working example</span>
+    <div class="g2 reveal" style="align-items:stretch">
+      <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <b>Sara Teacher · leave 12–14 Aug</b>
+          <span>Days used 2 of 12</span>
+        </div>
+        <div class="win-body">
+          <div class="week">
+            <div class="d"><b>Mon</b><span>11</span></div>
+            <div class="d clash"><b>Tue</b><span>12</span><small>Leave</small></div>
+            <div class="d clash"><b>Wed</b><span>13</span><small>Leave</small></div>
+            <div class="d clash"><b>Thu</b><span>14</span><small>Leave</small></div>
+            <div class="d"><b>Fri</b><span>15</span></div>
+            <div class="d"><b>Sat</b><span>16</span></div>
+            <div class="d"><b>Sun</b><span>17</span></div>
+          </div>
+          <div class="act" style="margin-top:12px"><b>Approve leave</b><em>Reject</em></div>
+        </div>
+      </div>
+      <div class="win">
+        <div class="win-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <b>Fix these classes</b>
+          <span>2 of 3 remaining</span>
+        </div>
+        <div class="win-body" style="background:#fff">
+          <div class="row">
+            <div class="av">PH</div>
+            <div style="flex:1"><b>Physics · Batch A</b><small>Today 4:00 PM · 60 min · Zoom</small></div>
+            <span class="act"><b>Reschedule</b></span>
+          </div>
+          <div class="row" style="background:var(--bg);margin:0 -14px;padding:10px 14px;border-radius:12px">
+            <div class="av">PH</div>
+            <div style="flex:1"><b>Physics · Batch B</b><small>Given to Ahmed Ali · his salary will include this class</small></div>
+            <span class="st">Done</span>
+          </div>
+          <div class="row">
+            <div class="av">CH</div>
+            <div style="flex:1"><b>Chemistry Lab · Grade 9</b><small>Friday 3:00 PM · Zoom</small></div>
+            <span class="act"><b>Reassign</b><em>Cancel</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="next-feat reveal" href="#portals">Next: the four apps <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec" id="portals">
+  <div class="wrap">
+    <div class="story-copy reveal" style="max-width:720px;margin-bottom:22px">
+      <span class="eyebrow">14  /  Four apps</span>
+      <h2 class="h-lg">Same institute. Four phones. Each person only sees their job.</h2>
+      <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>Student joins class. Teacher starts class. Parent pays fees and switches children. Admin runs the office. Add to the phone home screen — no App Store needed.</span></div></div>
+      <ol class="steps">
+        <li><span class="sn">1</span><div><b>Open the link</b><span>On the phone or computer. Google sign-in if they prefer.</span></div></li>
+        <li><span class="sn">2</span><div><b>Add to home screen</b><span>It looks and feels like an app.</span></div></li>
+        <li><span class="sn">3</span><div><b>Work from there</b><span>Classes, homework, fees, messages — whatever belongs to that person.</span></div></li>
+      </ol>
+      <div class="who-sees"><em class="student">Student</em><em class="teacher">Teacher</em><em class="parent">Parent</em><em class="admin">Admin</em></div>
+    </div>
+    <span class="work-kicker reveal">Working example — student, teacher and parent phones</span>
+    <div class="phones reveal">
+      <div>
+      <div class="device">
+        <span class="notch"></span>
+        <div class="device-screen">
+          <div class="status-bar"><span>9:41</span><span class="sig"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span></div>
+          <div class="app-hero">
+            <small>Good morning</small>
+            <b>Ahmad Khan</b>
+          </div>
+          <div class="app-body">
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-video"></i></span>
+                <div>
+                  <div class="ttl"><span class="live-dot"></span>Physics · Chapter 7</div>
+                  <div class="sub">Live in 12 min · Sir Ahmed · Zoom</div>
+                </div>
+              </div>
+              <button class="join" type="button">Join lecture</button>
+            </div>
+            <div class="app-kpis">
+              <div><b>94%</b><span>Attendance</span></div>
+              <div><b>2</b><span>Homework</span></div>
+              <div><b>1</b><span>Quiz due</span></div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-file-pen"></i></span>
+                <div><div class="ttl">English essay</div><div class="sub">Due tomorrow · not submitted</div></div>
+              </div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-clipboard-question"></i></span>
+                <div><div class="ttl">Physics · Chapter 4 quiz</div><div class="sub">12 min left · 12 questions</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="app-tabs">
+            <span class="on"><i class="fa-solid fa-house"></i> Home</span>
+            <span><i class="fa-solid fa-video"></i> Lectures</span>
+            <span><i class="fa-solid fa-book"></i> Work</span>
+            <span><i class="fa-solid fa-envelope"></i> Inbox</span>
+            <span><i class="fa-solid fa-ellipsis"></i> More</span>
+          </div>
+        </div>
+        <div class="home-ind"></div>
+      </div>
+      <p class="device-cap">Student app <small>Lectures, homework, quizzes, fees</small></p>
+    </div>
+    <div>
+      <div class="device">
+        <span class="notch"></span>
+        <div class="device-screen">
+          <div class="status-bar"><span>9:41</span><span class="sig"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span></div>
+          <div class="app-hero">
+            <small>Teacher portal</small>
+            <b>Sara Ahmed</b>
+          </div>
+          <div class="app-body">
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-chalkboard-user"></i></span>
+                <div>
+                  <div class="ttl"><span class="live-dot"></span>Physics · Batch A</div>
+                  <div class="sub">Live now · 24 students in room</div>
+                </div>
+              </div>
+              <button class="join" type="button">Start class</button>
+            </div>
+            <div class="app-kpis">
+              <div><b>4</b><span>Today</span></div>
+              <div><b>6</b><span>To mark</span></div>
+              <div><b>92k</b><span>Salary</span></div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-clock"></i></span>
+                <div><div class="ttl">Maths · Algebra</div><div class="sub">11:00 AM · Recurring weekly</div></div>
+              </div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-clipboard-question"></i></span>
+                <div><div class="ttl">Chapter 4 quiz</div><div class="sub">18 submitted · 6 written answers to mark</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="app-tabs">
+            <span class="on"><i class="fa-solid fa-house"></i> Home</span>
+            <span><i class="fa-solid fa-video"></i> Classes</span>
+            <span><i class="fa-solid fa-users"></i> Students</span>
+            <span><i class="fa-solid fa-envelope"></i> Inbox</span>
+            <span><i class="fa-solid fa-ellipsis"></i> More</span>
+          </div>
+        </div>
+        <div class="home-ind"></div>
+      </div>
+      <p class="device-cap">Teacher app <small>Classes, quizzes, grading, salary</small></p>
+    </div>
+    <div>
+      <div class="device">
+        <span class="notch"></span>
+        <div class="device-screen">
+          <div class="status-bar"><span>9:41</span><span class="sig"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-full"></i></span></div>
+          <div class="app-hero">
+            <small>Parent portal</small>
+            <b>Raza Family</b>
+            <div class="child-switch"><span class="on">Arya · G9</span><span>Zainab · G6</span></div>
+          </div>
+          <div class="app-body">
+            <div class="app-kpis">
+              <div><b>96%</b><span>Attendance</span></div>
+              <div><b>Paid</b><span>Fees</span></div>
+              <div><b>A</b><span>Progress</span></div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-calendar-check"></i></span>
+                <div><div class="ttl">Today’s lectures</div><div class="sub">Physics 4:00 PM · Zoom</div></div>
+              </div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                <div><div class="ttl">July challan</div><div class="sub">PKR 8,000 · paid yesterday</div></div>
+              </div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-book-open"></i></span>
+                <div><div class="ttl">Homework 8 / 10</div><div class="sub">English essay due tomorrow</div></div>
+              </div>
+            </div>
+            <div class="app-card">
+              <div class="k">
+                <span class="ic"><i class="fa-solid fa-clipboard-question"></i></span>
+                <div><div class="ttl">Physics quiz 18 / 20</div><div class="sub">Passed · marked automatically</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="app-tabs">
+            <span class="on"><i class="fa-solid fa-house"></i> Home</span>
+            <span><i class="fa-solid fa-calendar"></i> Schedule</span>
+            <span><i class="fa-solid fa-wallet"></i> Fees</span>
+            <span><i class="fa-solid fa-envelope"></i> Inbox</span>
+            <span><i class="fa-solid fa-user"></i> Profile</span>
+          </div>
+        </div>
+        <div class="home-ind"></div>
+      </div>
+      <p class="device-cap">Parent app <small>Children switcher, fees, quiz scores</small></p>
+    </div>
+    </div>
+    <details class="admin-fold reveal">
+      <summary>
+        <span><b>See every admin menu</b><small>Optional — the three phones above are enough for most owners</small></span>
+        <i class="fa-solid fa-chevron-down"></i>
+      </summary>
+      <div class="admin-mods">
+        <div class="admin-mod">
+          <div class="mod-lbl">Dashboards</div>
+          <div class="li"><i></i>Main Dashboard</div>
+          <div class="li"><i></i>Salary Dashboard</div>
+          <div class="li"><i></i>Lectures Dashboard</div>
+          <div class="li"><i></i>Challan Dashboard</div>
+          <div class="mod-lbl">Institute</div>
+          <div class="li"><i></i>Campus</div>
+          <div class="li"><i></i>Classes</div>
+          <div class="li"><i></i>Batches</div>
+          <div class="li"><i></i>Subjects</div>
+          <div class="li"><i></i>Fee Plans</div>
+        </div>
+        <div class="admin-mod">
+          <div class="mod-lbl">People</div>
+          <div class="li"><i></i>All Students</div>
+          <div class="li"><i></i>Enrol Student</div>
+          <div class="li"><i></i>Bulk Upload</div>
+          <div class="li"><i></i>Student Attendance History</div>
+          <div class="li"><i></i>Portal Access</div>
+          <div class="li"><i></i>All Teachers</div>
+          <div class="li"><i></i>Add Teacher</div>
+          <div class="li"><i></i>Teacher Lecture History</div>
+          <div class="mod-lbl">Online Lectures</div>
+          <div class="li"><i></i>All Lectures</div>
+          <div class="li"><i></i>Add Lecture</div>
+          <div class="li"><i></i>Recurring Schedules</div>
+          <div class="li"><i></i>Master Meeting</div>
+        </div>
+        <div class="admin-mod">
+          <div class="mod-lbl">Finance</div>
+          <div class="li"><i></i>Generate Challan</div>
+          <div class="li"><i></i>Challan Records</div>
+          <div class="li"><i></i>Process Payment</div>
+          <div class="li"><i></i>Receipt Inbox</div>
+          <div class="li"><i></i>Daily Report</div>
+          <div class="li"><i></i>Monthly Report</div>
+          <div class="li"><i></i>Yearly Report</div>
+          <div class="li"><i></i>Fee Defaulters</div>
+          <div class="mod-lbl">Teacher Salary</div>
+          <div class="li"><i></i>Salary Plans</div>
+          <div class="li"><i></i>Plan Assignments</div>
+          <div class="li"><i></i>Payroll</div>
+          <div class="li"><i></i>Payment Status</div>
+          <div class="li"><i></i>Payment History</div>
+          <div class="li"><i></i>Advance Salary</div>
+          <div class="li"><i></i>Salary Reports</div>
+        </div>
+        <div class="admin-mod">
+          <div class="mod-lbl">Academic</div>
+          <div class="li"><i></i>Course Documents</div>
+          <div class="li"><i></i>Homework Approval</div>
+          <div class="li"><i></i>Lesson Plan Approval</div>
+          <div class="li"><i></i>Quizzes &amp; Exams</div>
+          <div class="li"><i></i>Reports Received</div>
+          <div class="li"><i></i>Student Leave Approval</div>
+          <div class="li"><i></i>Teacher Leave Approval</div>
+          <div class="mod-lbl">Messages</div>
+          <div class="li"><i></i>Inbox</div>
+          <div class="li"><i></i>Send Message</div>
+          <div class="li"><i></i>Message Monitor</div>
+        </div>
+      </div>
+    </details>
+    <a class="next-feat reveal" href="#controls">Next: simple switches <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="sec alt" id="controls">
+  <div class="wrap">
+    <div class="story flip">
+      <div class="story-copy reveal">
+        <span class="eyebrow">15  /  Simple switches</span>
+        <h2 class="h-lg">Turn things on. No technician required.</h2>
+        <div class="plain"><i class="fa-solid fa-comment"></i><div><b>In simple words</b><span>These live in the admin account menu. Extra staff, the alert bell, your Zoom, Google login, Drive — tick what you need.</span></div></div>
+        <ol class="steps">
+          <li><span class="sn">1</span><div><b>Open Account settings</b><span>One list of switches.</span></div></li>
+          <li><span class="sn">2</span><div><b>Tick what you want</b><span>Hide a student menu. Quiet fee alerts. Connect Zoom once.</span></div></li>
+          <li><span class="sn">3</span><div><b>Done</b><span>No extra software. No IT visit.</span></div></li>
+        </ol>
+        <div class="who-sees"><em class="admin">Admin only</em></div>
+        <a class="next-feat" href="#compare">See the before / after <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="story-demo reveal">
+        <span class="work-kicker">Working example</span>
+        <div class="win">
+          <div class="win-bar"><span class="dots"><i></i><i></i><i></i></span><b>Account settings</b><span>Admin menu</span></div>
+          <div class="win-body" style="background:#fff">
+            <div class="set-row"><span class="si"><i class="fa-solid fa-user-plus"></i></span><div style="flex:1"><div class="stt">Extra helper staff</div><div class="sts">They only see the menus you tick.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="Extra helper staff"></button></div>
+            <div class="set-row"><span class="si"><i class="fa-solid fa-bell"></i></span><div style="flex:1"><div class="stt">Alert bell</div><div class="sts">Quiet fee or class alerts if you wish.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="Alert bell"></button></div>
+            <div class="set-row"><span class="si"><i class="fa-solid fa-video"></i></span><div style="flex:1"><div class="stt">Your own Zoom</div><div class="sts">Connect once. Classes start from that account.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="Your own Zoom"></button></div>
+            <div class="set-row"><span class="si"><i class="fa-brands fa-google"></i></span><div style="flex:1"><div class="stt">Sign in with Google</div><div class="sts">Open the app without a password.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="Sign in with Google"></button></div>
+            <div class="set-row"><span class="si"><i class="fa-solid fa-mobile-screen"></i></span><div style="flex:1"><div class="stt">On the phone like an app</div><div class="sts">Add to home screen. No App Store.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="On the phone like an app"></button></div>
+            <div class="set-row"><span class="si"><i class="fa-brands fa-google-drive"></i></span><div style="flex:1"><div class="stt">Your Google Drive</div><div class="sts">Course files stay in the institute account.</div></div><button type="button" class="sw on" data-sw aria-pressed="true" aria-label="Your Google Drive"></button></div>
+            <small class="tap-hint">Tap any switch</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="compare">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Before / after</span>
+      <h2 class="h-lg">Same institute. Two ways to run it.</h2>
+      <p class="lead">If you still use WhatsApp, Excel and paper, this is what changes for the institute.</p>
+    </div>
+    <div class="ba-rows reveal">
+      <div class="ba-row">
+        <div class="topic">Live class</div>
+        <div class="no">Zoom links in WhatsApp. Someone always misses class.</div>
+        <div class="yes">Students tap Join. Their Zoom room opens.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Attendance</div>
+        <div class="no">A paper register. Easy to argue about.</div>
+        <div class="yes">Class ends. The roll is already filled from Zoom.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Fees</div>
+        <div class="no">Excel and phone chasing.</div>
+        <div class="yes">One click makes the bills. Parents pay in the app.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Parents</div>
+        <div class="no">They call for homework, scores and “did my child come?”</div>
+        <div class="yes">They open the phone: homework, scores, fees, both children.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Salary</div>
+        <div class="no">Paper slips. Advances get forgotten.</div>
+        <div class="yes">The slip writes itself. Advances come off the next one.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Leave</div>
+        <div class="no">A teacher is off — their Zoom class is left hanging.</div>
+        <div class="yes">Approve leave, then move, give, or cancel the class.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Files</div>
+        <div class="no">Notes and PDFs lost in group chats.</div>
+        <div class="yes">Files stay in your Google Drive. Students open them in the portal.</div>
+      </div>
+      <div class="ba-row">
+        <div class="topic">Access</div>
+        <div class="no">One shared login. Front-desk staff see the fees.</div>
+        <div class="yes">Five logins. A helper only sees the menus you tick.</div>
+      </div>
+    </div>
+    <a class="next-feat reveal" href="#contact">Ready to talk? Contact us <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<section class="cta-sec" id="contact">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px">
+        <span class="mark" style="width:44px;height:44px;display:block;background:#fff;border-radius:12px;overflow:hidden">
+          <img src="/pwa-icon-192.png" alt="IGNITE LMS" />
+        </span>
+        <span style="font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;font-weight:700">IGNITE Solutions</span>
+      </div>
+      <h2 class="h-lg">Ready when your institute is.</h2>
+      <p class="lead">One place for classes, fees, salary, parents and messages. We can walk you through it on a call — no technical talk required.</p>
+      <div class="cta-tags">
+        <span>Live classes</span><span>Fee bills</span><span>Teacher salary</span><span>Parent app</span>
+        <span>Homework</span><span>Quizzes</span><span>Leave</span><span>Whiteboard</span>
+        <span>WhatsApp login</span><span>Messages</span><span>Helper staff</span><span>On the phone</span>
+      </div>
+      <div class="cta-grid">
+        <div class="cta-panel">
+          <div style="margin-bottom:12px"><label>Website</label><a href="https://lms.ignitesol.net">lms.ignitesol.net</a></div>
+          <div style="margin-bottom:12px"><label>Company</label><b>IGNITE Solutions</b></div>
+          <div style="margin-bottom:12px"><label>WhatsApp</label><a href="https://wa.me/923024884029">+92 302 4884029</a></div>
+          <div><label>Email</label><a href="mailto:info@ignitesol.net">info@ignitesol.net</a></div>
+        </div>
+        <a href="https://youtu.be/51oN2bkIN5c" class="cta-demo" target="_blank" rel="noopener">
+          <strong>Watch it working</strong>
+          <span>A full walkthrough on YouTube — same story as this book.</span>
+        </a>
+        <div class="qr">
+          <div id="qrbox"></div>
+          <div>
+            <div style="font-size:.95rem;font-weight:700;color:var(--primary)">Scan to visit</div>
+            <div style="font-size:.8rem;color:var(--muted);margin:4px 0 8px">lms.ignitesol.net</div>
+            <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--primary)">Add to phone · Web</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:22px;display:flex;flex-wrap:wrap;gap:10px">
+        <a href="/" class="btn-ig btn-ghost-ig">← Return to landing page</a>
+        <a href="/Account/UserManual" class="btn-ig" style="background:#fff;color:var(--primary)">User manual</a>
+        <a href="/Account/Login" class="btn-ig btn-ghost-ig">Sign in</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-row">
+      <a href="/" class="brand">
+        <span class="mark"><img src="/pwa-icon-192.png" alt="IGNITE LMS" /></span>
+        IGNITE&nbsp;<b style="color:var(--accent)">LMS</b>
+      </a>
+      <span style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <a href="/Account/UserManual">User manual</a>
+        <a href="/Home/Privacy">Privacy</a>
+        <a href="/Home/Terms">Terms</a>
+        <span>© <span id="yr"></span> IGNITE Solutions · All rights reserved</span>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<nav class="bottom-nav" id="bottomNav" aria-label="Feature book">
+  <a href="#home" class="on"><i class="fa-solid fa-house"></i> Home</a>
+  <a href="#overview"><i class="fa-solid fa-layer-group"></i> Features</a>
+  <a href="#walkthrough"><i class="fa-solid fa-play"></i> How it works</a>
+  <a href="#portals"><i class="fa-solid fa-mobile-screen"></i> Apps</a>
+  <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+</nav>
+
+<a class="wa" href="https://wa.me/923024884029?text=Hello%2C%20I%20want%20to%20know%20more%20about%20IGNITE%20LMS." aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+
+<script>
+(function(){
+  "use strict";
+  var yr = document.getElementById("yr");
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  function tickApClock(){
+    var nodes = document.querySelectorAll(".ap-clock-time");
+    if (!nodes.length) return;
+    var text = new Intl.DateTimeFormat("en-GB", {
+      weekday: "short", day: "2-digit", month: "short",
+      hour: "numeric", minute: "2-digit", hour12: true,
+      timeZone: "Asia/Karachi"
+    }).format(new Date()).replace(/,/g, "") + " Asia/Karachi";
+    nodes.forEach(function(el){ el.textContent = text; });
+  }
+  tickApClock();
+  setInterval(tickApClock, 30000);
+
+  var box = document.getElementById("qrbox");
+  if (box) {
+    var p = [1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,0,1,1,0,1,1,1,0,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,1,0,1,1,0,1,0,1,0,0,1,0,1,0,1,1,0,0,0,1,1,0,1,1,0,0,1,0,0,0,0,1,1,1,1,1,1,1,1,1,1,0,1,0];
+    p.forEach(function(v){
+      var d = document.createElement("div");
+      d.style.cssText = "background:" + (v ? "#fff" : "transparent");
+      box.appendChild(d);
+    });
+  }
+
+  var nav = document.getElementById("nav");
+  var progress = document.getElementById("readProgress");
+  function onScroll(){
+    if (nav) nav.classList.toggle("scrolled", window.scrollY > 18);
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress && h > 0) progress.style.width = Math.min(100, (window.scrollY / h) * 100) + "%";
+  }
+  onScroll();
+  window.addEventListener("scroll", onScroll, {passive:true});
+
+  var menu = document.getElementById("mobileMenu");
+  var backdrop = document.getElementById("menuBackdrop");
+  function openMenu(){
+    menu.classList.add("open"); backdrop.classList.add("show");
+    document.body.classList.add("menu-open"); menu.setAttribute("aria-hidden","false");
+  }
+  function closeMenu(){
+    menu.classList.remove("open"); backdrop.classList.remove("show");
+    document.body.classList.remove("menu-open"); menu.setAttribute("aria-hidden","true");
+  }
+  var toggle = document.getElementById("navToggle");
+  var closeBtn = document.getElementById("mClose");
+  if (toggle) toggle.addEventListener("click", openMenu);
+  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+  if (backdrop) backdrop.addEventListener("click", closeMenu);
+  if (menu) menu.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeMenu(); });
+  window.addEventListener("resize", function(){ if (window.innerWidth > 991) closeMenu(); });
+
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!reduced && "IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add("in"); });
+    }, {threshold: 0.12, rootMargin: "0px 0px -40px 0px"});
+    document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll(".reveal").forEach(function(el){ el.classList.add("in"); });
+  }
+
+  (function demoJoin(){
+    var root = document.getElementById("demoJoin");
+    if (!root) return;
+    var status = root.querySelector("[data-join-status]");
+    var count = root.querySelector("[data-join-count]");
+    var note = root.querySelector("[data-join-note]");
+    var btn = root.querySelector("[data-join-btn]");
+    var live = false;
+    var left = 18;
+    var timer = null;
+    function fmt(s){
+      var m = Math.floor(s / 60);
+      var r = s % 60;
+      return "00 : " + String(m).padStart(2, "0") + " : " + String(r).padStart(2, "0");
+    }
+    function tick(){
+      if (live) return;
+      left = Math.max(0, left - 1);
+      if (count) count.textContent = fmt(left);
+      if (left === 0 && note) note.textContent = "Class is ready — tap Join";
+    }
+    function startTimer(){
+      if (timer) clearInterval(timer);
+      if (!reduced) timer = setInterval(tick, 1000);
+    }
+    function setLive(){
+      live = true;
+      if (timer) clearInterval(timer);
+      if (status) {
+        status.classList.add("live");
+        status.innerHTML = '<span class="dot"></span> Live now';
+      }
+      if (count) count.textContent = "In the room";
+      if (note) note.textContent = "This is what students see after Join";
+      if (btn) btn.innerHTML = 'You\'re in · Reset <i class="fa-solid fa-rotate-left"></i>';
+    }
+    function reset(){
+      live = false;
+      left = 18;
+      if (status) {
+        status.classList.remove("live");
+        status.innerHTML = '<span class="dot"></span> Starting soon';
+      }
+      if (count) count.textContent = fmt(left);
+      if (note) note.textContent = "Tap Join to try it — countdown is a demo";
+      if (btn) btn.innerHTML = 'Try it — Join lecture <i class="fa-solid fa-arrow-right"></i>';
+      startTimer();
+    }
+    startTimer();
+    if (btn) btn.addEventListener("click", function(){ live ? reset() : setLive(); });
+  })();
+
+  (function demoReceipts(){
+    var inbox = document.getElementById("demoReceipts");
+    if (!inbox) return;
+    var wait = inbox.querySelector("[data-wait]");
+    function remaining(){ return inbox.querySelectorAll(".row[data-open]").length; }
+    function refresh(){ if (wait) wait.textContent = remaining() + " waiting"; }
+    inbox.addEventListener("click", function(e){
+      var action = e.target.closest("[data-verdict]");
+      if (!action) return;
+      var row = action.closest(".row");
+      if (!row || !row.hasAttribute("data-open")) return;
+      var ok = action.getAttribute("data-verdict") === "approve";
+      row.removeAttribute("data-open");
+      var slot = row.querySelector(".act");
+      if (slot) slot.innerHTML = ok ? '<span class="st">Approved</span>' : '<span class="st off">Rejected</span>';
+      refresh();
+    });
+  })();
+
+  (function demoPay(){
+    var pay = document.getElementById("demoPay");
+    if (!pay) return;
+    var btn = pay.querySelector("[data-pay-btn]");
+    var st = pay.querySelector("[data-pay-status]");
+    var hint = pay.querySelector("[data-pay-hint]");
+    if (!btn) return;
+    btn.addEventListener("click", function(){
+      if (pay.classList.contains("paid")) {
+        pay.classList.remove("paid");
+        if (st) st.textContent = "Unpaid";
+        btn.innerHTML = '<i class="fa-solid fa-wallet"></i> Try it — Pay now';
+        if (hint) hint.textContent = "or send an Easypaisa / bank photo";
+        return;
+      }
+      pay.classList.add("paid");
+      if (st) st.textContent = "Paid";
+      btn.innerHTML = 'Paid · Reset <i class="fa-solid fa-rotate-left"></i>';
+      if (hint) hint.textContent = "Parent sees Paid. You see it in challan records.";
+    });
+  })();
+
+  (function demoGenerate(){
+    var gen = document.getElementById("demoGenerate");
+    if (!gen) return;
+    var btn = gen.querySelector("[data-gen-btn]");
+    var box = gen.querySelector("[data-gen-students]");
+    if (!btn) return;
+    btn.addEventListener("click", function(){
+      if (gen.classList.contains("done")) {
+        gen.classList.remove("done");
+        btn.innerHTML = '<i class="fa-solid fa-file-invoice-dollar"></i> Create 24 fee bills';
+        if (box) box.textContent = "24 bills will be created";
+        return;
+      }
+      gen.classList.add("done");
+      btn.innerHTML = '24 bills created · Reset <i class="fa-solid fa-rotate-left"></i>';
+      if (box) box.textContent = "24 challans ready — parents can pay";
+    });
+  })();
+
+  document.querySelectorAll("[data-sw]").forEach(function(sw){
+    sw.addEventListener("click", function(){
+      var on = sw.classList.toggle("on");
+      sw.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  });
+
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".toc-chip"));
+  var navAs = Array.prototype.slice.call(document.querySelectorAll("#navLinks a"));
+  var bottomAs = Array.prototype.slice.call(document.querySelectorAll("#bottomNav a"));
+  var tocScroll = document.getElementById("tocScroll");
+  var currentId = "";
+  var sections = ["home","overview","roles","setup","dashboard","comms","lectures","whiteboard","attendance","academic","exams","documents","challans","salary","leave","portals","controls","compare","contact"]
+    .map(function(id){ return document.getElementById(id); })
+    .filter(Boolean);
+
+  function centerChip(chip){
+    if (!tocScroll || !chip) return;
+    var target = chip.offsetLeft - (tocScroll.clientWidth - chip.offsetWidth) / 2;
+    tocScroll.scrollLeft = Math.max(0, target);
+  }
+
+  function setActive(id){
+    if (!id || id === currentId) return;
+    currentId = id;
+    chips.forEach(function(c){ c.classList.toggle("on", c.getAttribute("href") === "#" + id); });
+    navAs.forEach(function(a){ a.classList.toggle("on", a.getAttribute("href") === "#" + id); });
+    var bottomMap = {home:"#home", overview:"#overview", roles:"#walkthrough", setup:"#walkthrough", dashboard:"#walkthrough", comms:"#walkthrough", lectures:"#walkthrough", whiteboard:"#walkthrough", attendance:"#walkthrough", academic:"#walkthrough", exams:"#walkthrough", documents:"#walkthrough", challans:"#walkthrough", salary:"#walkthrough", leave:"#walkthrough", portals:"#portals", controls:"#walkthrough", compare:"#walkthrough", contact:"#contact"};
+    var href = bottomMap[id] || "#home";
+    bottomAs.forEach(function(a){ a.classList.toggle("on", a.getAttribute("href") === href); });
+    centerChip(chips.filter(function(c){ return c.classList.contains("on"); })[0]);
+  }
+
+  if ("IntersectionObserver" in window) {
+    var sio = new IntersectionObserver(function(entries){
+      var vis = entries.filter(function(e){ return e.isIntersecting; }).sort(function(a,b){ return b.intersectionRatio - a.intersectionRatio; })[0];
+      if (vis && vis.target && vis.target.id) setActive(vis.target.id);
+    }, {rootMargin: "-30% 0px -55% 0px", threshold: [0.1, 0.25, 0.5]});
+    sections.forEach(function(s){ sio.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
