@@ -1,0 +1,2 @@
+https://lms.ignitesol.net/pwa-icon-192.png	pwa-icon-192.png	17739
+https://lms.ignitesol.net/tab-logo-lms.png	tab-logo-lms.png	206548
